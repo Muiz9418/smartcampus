@@ -1,0 +1,239 @@
+<div class="section-title">
+    <h2>Welcome to Smart Campus</h2>
+    <p>Please login or register to continue</p>
+</div>
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-left">
+            <h2>Welcome Back!</h2>
+            <p class="mt-1">Access your Smart Campus account to continue your academic journey.</p>
+            <ul class="mt-2" style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: var(--primary-color);"></i>
+                    <span>Track your academic progress</span>
+                </li>
+                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: var(--primary-color);"></i>
+                    <span>Access course materials</span>
+                </li>
+                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: var(--primary-color);"></i>
+                    <span>View attendance records</span>
+                </li>
+                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: var(--primary-color);"></i>
+                    <span>Submit assignments online</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: var(--primary-color);"></i>
+                    <span>Connect with instructors</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="auth-right">
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="event.preventDefault(); switchTab('login'); return false;">Login</button>
+                <button class="tab-btn" onclick="event.preventDefault(); switchTab('register'); return false;">Register</button>
+            </div>
+            
+            <form id="login-form" class="auth-form" onsubmit="handleAuthLogin(event)">
+                <div class="form-group">
+                    <label for="login-identifier">Email or ID Number</label>
+                    <input type="text" id="login-identifier" class="form-control" placeholder="Enter email or ID" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-type">Login As</label>
+                    <select id="user-type" class="form-control" onchange="toggleIdField()">
+                        <option value="student">Student</option>
+                        <option value="instructor">Instructor</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+
+                <!-- ID field that changes based on user type -->
+                <div class="form-group" id="id-field-container" style="display: none;">
+                    <label id="id-field-label"></label>
+                    <input type="text" id="id-field" class="form-control" placeholder="">
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" style="color: var(--primary-color); text-decoration: none;">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> Login to Smart Campus
+                </button>
+            </form>
+            
+            <form id="register-form" class="auth-form hidden" onsubmit="handleAuthRegister(event)">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-email">Email Address</label>
+                    <input type="email" id="register-email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-identifier">Matric/Staff ID</label>
+                    <input type="text" id="register-identifier" class="form-control" placeholder="Enter your ID number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" class="form-control" placeholder="Create a password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" class="form-control" placeholder="Confirm your password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-type">Register As</label>
+                    <select id="register-type" class="form-control" onchange="updateRegisterIdPlaceholder()">
+                        <option value="student">Student</option>
+                        <option value="instructor">Instructor</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" required> I agree to the Terms & Conditions
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </form>
+            
+            <div class="mt-2 text-center">
+                <p id="login-footer">Don't have an account? <a href="#" onclick="event.preventDefault(); switchTab('register')" style="color: var(--primary-color); cursor: pointer;">Register here</a></p>
+                <p id="register-footer" class="hidden">Already have an account? <a href="#" onclick="event.preventDefault(); switchTab('login')" style="color: var(--primary-color); cursor: pointer;">Login here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab switching is now handled by index.html's switchTab function
+    // This script handles other auth-specific functionality
+    
+    // Handle login - expose globally
+    window.__handleAuthLogin = function(event) {
+        event.preventDefault();
+        const identifier = document.getElementById('login-identifier')?.value;
+        const password = document.getElementById('login-password')?.value;
+        const userType = document.getElementById('user-type')?.value || 'student';
+        
+        // Simple validation
+        if (!identifier || !password) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        // Simulate successful login
+        console.log('Login attempt:', { identifier, password, userType });
+        alert(`Welcome! Logged in as ${userType}`);
+        
+        // Navigate to appropriate dashboard
+        if (userType === 'instructor') {
+            navigate('/instructor-dashboard');
+        } else if (userType === 'admin') {
+            navigate('/admin');
+        } else {
+            window.navigate('/student-dashboard');
+        }
+    };
+    
+    // Handle register - expose globally
+    window.__handleAuthRegister = function(event) {
+        event.preventDefault();
+        const name = document.getElementById('register-name')?.value;
+        const email = document.getElementById('register-email')?.value;
+        const identifier = document.getElementById('register-identifier')?.value;
+        const password = document.getElementById('register-password')?.value;
+        const confirmPassword = document.getElementById('confirm-password')?.value;
+        const userType = document.getElementById('register-type')?.value || 'student';
+        
+        // Validation
+        if (!name || !email || !identifier || !password || !confirmPassword) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        if (password !== confirmPassword) {
+            alert('Passwords do not match');
+            return;
+        }
+        
+        // Simulate successful registration
+        console.log('Registration:', { name, email, identifier, userType });
+        alert(`Account created successfully! Welcome, ${name}`);
+        
+        // Switch to login
+        window.switchTab('login');
+    };
+    
+    // Toggle ID field - expose globally
+    window.__toggleIdField = function() {
+        const userType = document.getElementById('user-type')?.value;
+        const idFieldContainer = document.getElementById('id-field-container');
+        const idFieldLabel = document.getElementById('id-field-label');
+        const idField = document.getElementById('id-field');
+        
+        if (userType === 'student') {
+            idFieldLabel.textContent = 'Matric Number';
+            idField.placeholder = 'Enter your matric number';
+        } else if (userType === 'instructor') {
+            idFieldLabel.textContent = 'Staff ID';
+            idField.placeholder = 'Enter your staff ID';
+        } else if (userType === 'admin') {
+            idFieldLabel.textContent = 'Admin ID';
+            idField.placeholder = 'Enter your admin ID';
+        }
+    };
+    
+    // Update register ID placeholder - expose globally
+    window.__updateRegisterIdPlaceholder = function() {
+        const registerType = document.getElementById('register-type')?.value;
+        const registerIdentifier = document.getElementById('register-identifier');
+        
+        if (registerType === 'student') {
+            registerIdentifier.placeholder = 'Enter your matric number';
+        } else if (registerType === 'instructor') {
+            registerIdentifier.placeholder = 'Enter your staff ID';
+        } else if (registerType === 'admin') {
+            registerIdentifier.placeholder = 'Enter your admin ID';
+        }
+    };
+    
+    // Handle path-based routing for auth tabs
+    function handleAuthHash() {
+        const pathname = window.location.pathname;
+        if (pathname === '/auth/register') {
+            window.switchTab('register');
+        } else if (pathname === '/auth/login' || pathname === '/auth') {
+            window.switchTab('login');
+        }
+    }
+    
+    // Initialize on page load
+    window.addEventListener('load', handleAuthHash);
+    window.addEventListener('popstate', handleAuthHash);
+</script>

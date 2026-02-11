@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Smart Campus</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <div id="nav"></div>
+  <main id="app" class="content-area">
+    
+  </main>
+  <div id="footer"></div>
+
+  <!-- Early function definitions for inline onclick handlers -->
+  <script>
+    function navigate(path) {
+      if (window.__navigate) {
+        window.__navigate(path);
+      } else {
+        // Fallback until router loads
+        history.pushState({}, '', path);
+        location.reload();
+      }
+    }
+    
+    function switchTab(tab) {
+      // Direct implementation - doesn't need __switchTab
+      const loginForm = document.getElementById('login-form');
+      const registerForm = document.getElementById('register-form');
+      const loginFooter = document.getElementById('login-footer');
+      const registerFooter = document.getElementById('register-footer');
+      const tabBtns = document.querySelectorAll('.auth-tabs .tab-btn');
+      
+      if (tab === 'login') {
+        loginForm?.classList.remove('hidden');
+        registerForm?.classList.add('hidden');
+        loginFooter?.classList.remove('hidden');
+        registerFooter?.classList.add('hidden');
+        if (tabBtns[0]) tabBtns[0].classList.add('active');
+        if (tabBtns[1]) tabBtns[1].classList.remove('active');
+      } else if (tab === 'register') {
+        loginForm?.classList.add('hidden');
+        registerForm?.classList.remove('hidden');
+        loginFooter?.classList.add('hidden');
+        registerFooter?.classList.remove('hidden');
+        if (tabBtns[0]) tabBtns[0].classList.remove('active');
+        if (tabBtns[1]) tabBtns[1].classList.add('active');
+      }
+    }
+    
+    function handleLogin(event) {
+      if (window.__handleLogin) {
+        window.__handleLogin(event);
+      }
+    }
+    
+    function handleRegister(event) {
+      if (window.__handleRegister) {
+        window.__handleRegister(event);
+      }
+    }
+    
+    function handleAuthLogin(event) {
+      if (window.__handleAuthLogin) {
+        window.__handleAuthLogin(event);
+      } else if (window.__handleLogin) {
+        window.__handleLogin(event);
+      }
+    }
+    
+    function handleAuthRegister(event) {
+      if (window.__handleAuthRegister) {
+        window.__handleAuthRegister(event);
+      } else if (window.__handleRegister) {
+        window.__handleRegister(event);
+      }
+    }
+    
+    function confirmLogout(event) {
+      if (window.__confirmLogout) {
+        window.__confirmLogout(event);
+      }
+    }
+    
+    function toggleIdField() {
+      if (window.__toggleIdField) {
+        window.__toggleIdField();
+      }
+    }
+    
+    function updateRegisterIdPlaceholder() {
+      if (window.__updateRegisterIdPlaceholder) {
+        window.__updateRegisterIdPlaceholder();
+      }
+    }
+  </script>
+
+  <script type="module" src="/js/main.js"></script>
+  <script type="module" src="/js/router.js"></script>
+</body>
+</html>

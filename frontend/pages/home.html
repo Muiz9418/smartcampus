@@ -1,0 +1,49 @@
+<section class="hero">
+  <h2>Welcome to Smart Campus</h2>
+  <p>A comprehensive campus management system to streamline academic processes.</p>
+  <div class="hero-buttons">
+    <button class="btn btn-primary" onclick="navigate('/auth/login')"><i class="fas fa-sign-in-alt"></i> Get Started</button>
+    <button class="btn btn-secondary" onclick="navigate('/learn-more')"><i class="fas fa-info-circle"></i> Learn More</button>
+  </div>
+</section>
+
+<div class="section-title">
+  <h2>Quick Links</h2>
+  <p>Access essential campus services with just one click</p>
+</div>
+
+<div class="grid grid-4">
+  <div class="feature-card">
+    <i class="fas fa-user-graduate"></i>
+    <h3>Student Portal</h3>
+    <p>Access your courses, grades, and attendance</p>
+    <button class="btn btn-primary mt-1" onclick="navigate('/student-dashboard')">Go to Portal</button>
+  </div>
+
+  <div class="feature-card">
+    <i class="fas fa-chalkboard-teacher"></i>
+    <h3>Instructor Portal</h3>
+    <p>Manage courses and grade assignments</p>
+    <button class="btn btn-primary mt-1" onclick="navigate('/instructor-dashboard')">Go to Portal</button>
+  </div>
+
+  <div class="feature-card">
+    <i class="fas fa-calendar-check"></i>
+    <h3>Attendance System</h3>
+    <p>Mark and track attendance for your classes</p>
+    <button class="btn btn-primary mt-1" onclick="navigate('#attendance')">View Attendance</button>
+  </div>
+
+  <div class="feature-card">
+    <i class="fas fa-cogs"></i>
+    <h3>Admin Panel</h3>
+    <p>Administration and management tools</p>
+    <button class="btn btn-primary mt-1" onclick="navigate('/admin')">Admin Access</button>
+  </div>
+</div>
+
+<script>
+  function navigate(hash) {
+    window.location.hash = hash;
+  }
+</script>

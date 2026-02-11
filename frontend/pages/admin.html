@@ -1,0 +1,110 @@
+<div class="section-title">
+  <h2>Admin Panel</h2>
+  <p>System administration and management tools</p>
+</div>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <h3 style="margin-top:0;">Administration</h3>
+    <nav class="admin-nav">
+      <button class="admin-nav-btn active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+      <button class="admin-nav-btn" data-section="users"><i class="fas fa-users"></i> Users</button>
+      <button class="admin-nav-btn" data-section="courses"><i class="fas fa-book-open"></i> Courses</button>
+      <button class="admin-nav-btn" data-section="analytics"><i class="fas fa-chart-line"></i> Analytics</button>
+      <button class="admin-nav-btn" data-section="settings"><i class="fas fa-cog"></i> Settings</button>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <section id="section-dashboard" class="admin-section">
+      <div class="grid grid-3">
+        <div class="info-card">
+          <h4>Users</h4>
+          <p id="stat-users">--</p>
+        </div>
+        <div class="info-card">
+          <h4>Courses</h4>
+          <p id="stat-courses">--</p>
+        </div>
+        <div class="info-card">
+          <h4>Active Sessions</h4>
+          <p id="stat-sessions">--</p>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <h3>Recent Activity</h3>
+        <ul id="recent-activity" style="list-style:none;padding-left:0;">
+          <li>No recent activity</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="section-users" class="admin-section" style="display:none;">
+      <h3>Manage Users</h3>
+      <table class="table">
+        <thead>
+          <tr><th>Name</th><th>Email/ID</th><th>Role</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="users-table">
+          <tr><td>Jane Doe</td><td>jane@example.com</td><td>Student</td><td><button class="btn">Edit</button></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="section-courses" class="admin-section" style="display:none;">
+      <h3>Courses</h3>
+      <table class="table">
+        <thead>
+          <tr><th>Code</th><th>Title</th><th>Instructor</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="courses-table">
+          <tr><td>CSC101</td><td>Intro to Computing</td><td>Dr. Smith</td><td><button class="btn">Edit</button></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="section-analytics" class="admin-section" style="display:none;">
+      <h3>Analytics</h3>
+      <p>Usage charts and exportable reports will appear here.</p>
+    </section>
+
+    <section id="section-settings" class="admin-section" style="display:none;">
+      <h3>Settings</h3>
+      <p>System configuration options.</p>
+    </section>
+  </main>
+</div>
+
+<script>
+  (function(){
+    function showSection(name) {
+      document.querySelectorAll('.admin-section').forEach(s => s.style.display = 'none');
+      const el = document.getElementById('section-' + name);
+      if (el) el.style.display = '';
+
+      document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+      const btn = document.querySelector('.admin-nav-btn[data-section="' + name + '"]');
+      if (btn) btn.classList.add('active');
+    }
+
+    document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.getAttribute('data-section');
+        showSection(section);
+      });
+    });
+
+    // Populate some demo stats
+    document.getElementById('stat-users').textContent = '1,024';
+    document.getElementById('stat-courses').textContent = '72';
+    document.getElementById('stat-sessions').textContent = '18';
+
+    // Simple recent activity demo
+    const activity = document.getElementById('recent-activity');
+    activity.innerHTML = '<li>User <strong>Jane Doe</strong> registered.</li><li>Course <strong>CSC101</strong> added.</li>';
+
+    // Expose for tests
+    window.__showAdminSection = showSection;
+  })();
+</script>

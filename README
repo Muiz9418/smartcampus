@@ -1,0 +1,13 @@
+smartcampus/
+│
+├── smartcampus/
+│   ├── settings.py
+│   ├── urls.py
+│
+├── academics/
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── admin.py
+│
+├── manage.py

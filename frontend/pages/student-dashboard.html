@@ -1,0 +1,126 @@
+<div class="dashboard-container">
+    <div class="dashboard-sidebar">
+        <div class="sidebar-nav">
+            <a href="#student-dashboard" class="sidebar-item active" data-link="#student-dashboard">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="#profile" class="sidebar-item" data-link="#profile">
+                <i class="fas fa-user"></i> Profile
+            </a>
+            <a href="#courses" class="sidebar-item" data-link="#courses">
+                <i class="fas fa-book"></i> Courses
+            </a>
+            <a href="#attendance" class="sidebar-item" data-link="#attendance">
+                <i class="fas fa-calendar-check"></i> Attendance
+            </a>
+            <a href="#results" class="sidebar-item" data-link="#results">
+                <i class="fas fa-chart-bar"></i> Results
+            </a>
+            <a href="#settings" class="sidebar-item" data-link="#settings">
+                <i class="fas fa-cog"></i> Settings
+            </a>
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid rgba(255,255,255,0.1);">
+            <a href="#auth/login" class="sidebar-item" onclick="confirmLogout(event)">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+    
+    <div class="dashboard-main">
+        <div class="section-title">
+            <h2>Welcome, Student!</h2>
+            <p>Here's your academic dashboard</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-book"></i>
+                <h3>Enrolled Courses</h3>
+                <div class="stat-value">5</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-percentage"></i>
+                <h3>GPA</h3>
+                <div class="stat-value">3.8</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Attendance</h3>
+                <div class="stat-value">94%</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <h3>Pending Tasks</h3>
+                <div class="stat-value">3</div>
+            </div>
+        </div>
+        
+        <div class="grid grid-2">
+            <div class="card">
+                <h3 style="margin-bottom: 20px; color: var(--secondary-color);">Recent Assignments</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="padding: 15px; border-left: 4px solid var(--primary-color); background: #f9f9f9; border-radius: 4px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                            <strong>Mathematics Assignment 3</strong>
+                            <span style="background: #fff3cd; color: #856404; padding: 4px 12px; border-radius: 12px; font-size: 0.85rem;">Due Soon</span>
+                        </div>
+                        <p style="color: #7f8c8d; margin-bottom: 8px;">Advanced Calculus - Due Feb 15</p>
+                        <div style="background: #e9ecef; height: 4px; border-radius: 2px; overflow: hidden;">
+                            <div style="background: var(--primary-color); height: 100%; width: 60%;"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 15px; border-left: 4px solid var(--success-color); background: #f9f9f9; border-radius: 4px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                            <strong>Physics Lab Report</strong>
+                            <span style="background: #d4edda; color: #155724; padding: 4px 12px; border-radius: 12px; font-size: 0.85rem;">Submitted</span>
+                        </div>
+                        <p style="color: #7f8c8d; margin-bottom: 8px;">Submitted on Feb 8</p>
+                    </div>
+                    <div style="padding: 15px; border-left: 4px solid var(--accent-color); background: #f9f9f9; border-radius: 4px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                            <strong>Chemistry Project Proposal</strong>
+                            <span style="background: #f8d7da; color: #721c24; padding: 4px 12px; border-radius: 12px; font-size: 0.85rem;">Overdue</span>
+                        </div>
+                        <p style="color: #7f8c8d;">Overdue by 2 days</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 style="margin-bottom: 20px; color: var(--secondary-color);">Course Overview</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                        <div>
+                            <strong>Data Structures</strong>
+                            <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 5px;">Prof. Johnson</p>
+                        </div>
+                        <span style="background: rgba(52, 152, 219, 0.1); color: var(--primary-color); padding: 8px 12px; border-radius: 4px; font-weight: 600;">A</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                        <div>
+                            <strong>Web Development</strong>
+                            <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 5px;">Prof. Smith</p>
+                        </div>
+                        <span style="background: rgba(46, 204, 113, 0.1); color: var(--success-color); padding: 8px 12px; border-radius: 4px; font-weight: 600;">A-</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                        <div>
+                            <strong>Database Systems</strong>
+                            <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 5px;">Prof. Brown</p>
+                        </div>
+                        <span style="background: rgba(46, 204, 113, 0.1); color: var(--success-color); padding: 8px 12px; border-radius: 4px; font-weight: 600;">B+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmLogout(event) {
+        event.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+            navigate('/auth/login');
+        }
+    }
+</script>

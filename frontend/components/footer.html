@@ -1,0 +1,28 @@
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>Smart Campus</h3>
+      <p>Helping institutions run smarter, safer, and faster.</p>
+    </div>
+
+    <div class="footer-column">
+      <h3>Links</h3>
+      <ul class="footer-links">
+        <li><a href="/" data-link="/">Home</a></li>
+        <li><a href="/learn-more" data-link="/learn-more">About</a></li>
+        <li><a href="/login" data-link="/login">Login</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Contact</h3>
+      <p>support@smartcampus.example</p>
+    </div>
+  </div>
+
+  <div class="copyright">
+    &copy; <span id="year"></span> Smart Campus — All rights reserved
+  </div>
+</footer>
+
+<script>document.getElementById('year')?.innerText = new Date().getFullYear();</script>

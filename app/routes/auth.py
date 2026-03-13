@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_user, login_required, logout_user
 
-from extensions import db, bcrypt
-from models import User, Student, Lecturer
+from ..extensions import db, bcrypt
+from ..models import User, Student, Lecturer
 
 auth_bp = Blueprint('auth', __name__)
 

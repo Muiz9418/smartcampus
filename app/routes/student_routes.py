@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 
-from extensions import db
-from models import Student, Course, Enrollment, Attendance, Result
+from ..extensions import db
+from ..models import Student, Course, Enrollment, Attendance, Result
 
 student_bp = Blueprint('student', __name__, url_prefix='/student')
 

@@ -1,5 +1,5 @@
 from flask_login import UserMixin
-from .extensions import db, login_manager
+from ..extensions import db, login_manager
 
 
 class User(db.Model, UserMixin):

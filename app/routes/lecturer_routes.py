@@ -3,8 +3,8 @@ from datetime import date
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 
-from extensions import db
-from models import Lecturer, Course, Student, Enrollment, Attendance, Result
+from ..extensions import db
+from ..models import Lecturer, Course, Student, Enrollment, Attendance, Result
 
 lecturer_bp = Blueprint('lecturer', __name__, url_prefix='/lecturer')
 

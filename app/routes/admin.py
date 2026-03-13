@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 
-from extensions import db
-from models import User, Student, Lecturer, Course, Enrollment
+from ..extensions import db
+from ..models import User, Student, Lecturer, Course, Enrollment
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 

@@ -15,7 +15,6 @@ from datetime import date
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'smartcampus-secret-key'
 
-# 🔧 FIX: FORCE DATABASE TO PROJECT DIRECTORY
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'smartcampus.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -96,7 +95,7 @@ def load_user(user_id):
     return db.session.get(User, int(user_id))
 
 # ----------------------
-# ROUTES
+# AUTH ROUTES
 # ----------------------
 @app.route('/register', methods=['POST'])
 def register():
@@ -154,6 +153,9 @@ def logout():
     return jsonify(message="Logged out successfully"), 200
 
 
+# ----------------------
+# STUDENT ROUTES
+# ----------------------
 @app.route('/student/dashboard')
 @login_required
 def student_dashboard():
@@ -192,6 +194,57 @@ def student_dashboard():
     )
 
 
+@app.route('/student/enroll', methods=['POST'])
+@login_required
+def student_enroll():
+    """
+    Allows a logged-in student to enroll in a course.
+    Body: { "course_code": "CSC301" }
+    """
+    if current_user.role != 'student':
+        return jsonify(error="Unauthorized"), 403
+
+    data = request.json
+    student = Student.query.filter_by(user_id=current_user.id).first()
+    course = Course.query.filter_by(course_code=data.get('course_code')).first()
+
+    if not course:
+        return jsonify(error="Course not found"), 404
+
+    # Prevent duplicate enrollment
+    already_enrolled = Enrollment.query.filter_by(
+        student_id=student.id,
+        course_id=course.id
+    ).first()
+
+    if already_enrolled:
+        return jsonify(error="Already enrolled in this course"), 400
+
+    db.session.add(Enrollment(student_id=student.id, course_id=course.id))
+    db.session.commit()
+
+    return jsonify(message=f"Successfully enrolled in {course.course_title}"), 201
+
+
+@app.route('/student/courses', methods=['GET'])
+@login_required
+def list_available_courses():
+    """
+    Returns all available courses a student can browse and enroll in.
+    """
+    if current_user.role != 'student':
+        return jsonify(error="Unauthorized"), 403
+
+    courses = Course.query.all()
+    return jsonify(courses=[
+        {"id": c.id, "course_code": c.course_code, "course_title": c.course_title}
+        for c in courses
+    ]), 200
+
+
+# ----------------------
+# LECTURER ROUTES
+# ----------------------
 @app.route('/lecturer/dashboard')
 @login_required
 def lecturer_dashboard():
@@ -201,9 +254,206 @@ def lecturer_dashboard():
     lecturer = Lecturer.query.filter_by(user_id=current_user.id).first()
     courses = Course.query.filter_by(lecturer_id=lecturer.id).all()
 
-    return jsonify(courses=[c.course_title for c in courses])
+    return jsonify(courses=[
+        {"id": c.id, "course_code": c.course_code, "course_title": c.course_title}
+        for c in courses
+    ])
 
 
+@app.route('/lecturer/attendance', methods=['POST'])
+@login_required
+def mark_attendance():
+    """
+    Allows a lecturer to mark attendance for students in their course.
+    Body:
+    {
+        "course_code": "CSC301",
+        "date": "2025-03-01",           # optional, defaults to today
+        "attendance": [
+            {"matric_no": "U2021/001", "status": "Present"},
+            {"matric_no": "U2021/002", "status": "Absent"}
+        ]
+    }
+    """
+    if current_user.role != 'lecturer':
+        return jsonify(error="Unauthorized"), 403
+
+    data = request.json
+    lecturer = Lecturer.query.filter_by(user_id=current_user.id).first()
+    course = Course.query.filter_by(course_code=data.get('course_code')).first()
+
+    if not course:
+        return jsonify(error="Course not found"), 404
+
+    # Confirm the lecturer owns this course
+    if course.lecturer_id != lecturer.id:
+        return jsonify(error="You are not assigned to this course"), 403
+
+    attendance_date = date.fromisoformat(data['date']) if data.get('date') else date.today()
+
+    errors = []
+    marked = 0
+
+    for entry in data.get('attendance', []):
+        student = Student.query.filter_by(matric_no=entry['matric_no']).first()
+
+        if not student:
+            errors.append(f"Student {entry['matric_no']} not found")
+            continue
+
+        # Check student is enrolled in this course
+        enrolled = Enrollment.query.filter_by(
+            student_id=student.id,
+            course_id=course.id
+        ).first()
+
+        if not enrolled:
+            errors.append(f"Student {entry['matric_no']} is not enrolled in {course.course_code}")
+            continue
+
+        # Avoid duplicate attendance entry for same date
+        existing = Attendance.query.filter_by(
+            student_id=student.id,
+            course_id=course.id,
+            date=attendance_date
+        ).first()
+
+        if existing:
+            existing.status = entry['status']  # Allow update if already marked
+        else:
+            db.session.add(Attendance(
+                student_id=student.id,
+                course_id=course.id,
+                date=attendance_date,
+                status=entry['status']
+            ))
+
+        marked += 1
+
+    db.session.commit()
+
+    response = {"message": f"Attendance marked for {marked} student(s)"}
+    if errors:
+        response["warnings"] = errors
+
+    return jsonify(response), 200
+
+
+@app.route('/lecturer/results', methods=['POST'])
+@login_required
+def upload_results():
+    """
+    Allows a lecturer to upload or update scores for students in their course.
+    Body:
+    {
+        "course_code": "CSC301",
+        "results": [
+            {"matric_no": "U2021/001", "score": 78},
+            {"matric_no": "U2021/002", "score": 55}
+        ]
+    }
+    """
+    if current_user.role != 'lecturer':
+        return jsonify(error="Unauthorized"), 403
+
+    data = request.json
+    lecturer = Lecturer.query.filter_by(user_id=current_user.id).first()
+    course = Course.query.filter_by(course_code=data.get('course_code')).first()
+
+    if not course:
+        return jsonify(error="Course not found"), 404
+
+    if course.lecturer_id != lecturer.id:
+        return jsonify(error="You are not assigned to this course"), 403
+
+    errors = []
+    uploaded = 0
+
+    for entry in data.get('results', []):
+        student = Student.query.filter_by(matric_no=entry['matric_no']).first()
+
+        if not student:
+            errors.append(f"Student {entry['matric_no']} not found")
+            continue
+
+        enrolled = Enrollment.query.filter_by(
+            student_id=student.id,
+            course_id=course.id
+        ).first()
+
+        if not enrolled:
+            errors.append(f"Student {entry['matric_no']} is not enrolled in {course.course_code}")
+            continue
+
+        score = entry.get('score')
+        if score is None or not (0 <= score <= 100):
+            errors.append(f"Invalid score for {entry['matric_no']}. Must be between 0 and 100.")
+            continue
+
+        # Update existing result or create new one
+        existing = Result.query.filter_by(
+            student_id=student.id,
+            course_id=course.id
+        ).first()
+
+        if existing:
+            existing.score = score
+        else:
+            db.session.add(Result(
+                student_id=student.id,
+                course_id=course.id,
+                score=score
+            ))
+
+        uploaded += 1
+
+    db.session.commit()
+
+    response = {"message": f"Results uploaded for {uploaded} student(s)"}
+    if errors:
+        response["warnings"] = errors
+
+    return jsonify(response), 200
+
+
+@app.route('/lecturer/course/students', methods=['GET'])
+@login_required
+def get_enrolled_students():
+    """
+    Returns all students enrolled in a lecturer's course.
+    Query param: ?course_code=CSC301
+    """
+    if current_user.role != 'lecturer':
+        return jsonify(error="Unauthorized"), 403
+
+    course_code = request.args.get('course_code')
+    lecturer = Lecturer.query.filter_by(user_id=current_user.id).first()
+    course = Course.query.filter_by(course_code=course_code).first()
+
+    if not course:
+        return jsonify(error="Course not found"), 404
+
+    if course.lecturer_id != lecturer.id:
+        return jsonify(error="You are not assigned to this course"), 403
+
+    enrollments = Enrollment.query.filter_by(course_id=course.id).all()
+    students = []
+
+    for e in enrollments:
+        student = db.session.get(Student, e.student_id)
+        if student:
+            students.append({
+                "matric_no": student.matric_no,
+                "department": student.department,
+                "level": student.level
+            })
+
+    return jsonify(students=students), 200
+
+
+# ----------------------
+# ADMIN ROUTES
+# ----------------------
 @app.route('/admin/dashboard')
 @login_required
 def admin_dashboard():
@@ -218,11 +468,146 @@ def admin_dashboard():
     )
 
 
+@app.route('/admin/course', methods=['POST'])
+@login_required
+def admin_add_course():
+    """
+    Allows admin to create a new course and assign it to a lecturer.
+    Body:
+    {
+        "course_code": "CSC401",
+        "course_title": "Artificial Intelligence",
+        "staff_id": "STAFF001"
+    }
+    """
+    if current_user.role != 'admin':
+        return jsonify(error="Unauthorized"), 403
+
+    data = request.json
+
+    if Course.query.filter_by(course_code=data['course_code']).first():
+        return jsonify(error="Course code already exists"), 400
+
+    lecturer = Lecturer.query.filter_by(staff_id=data.get('staff_id')).first()
+
+    if not lecturer:
+        return jsonify(error="Lecturer with that staff ID not found"), 404
+
+    course = Course(
+        course_code=data['course_code'],
+        course_title=data['course_title'],
+        lecturer_id=lecturer.id
+    )
+
+    db.session.add(course)
+    db.session.commit()
+
+    return jsonify(message=f"Course '{course.course_title}' created and assigned successfully"), 201
+
+
+@app.route('/admin/course', methods=['GET'])
+@login_required
+def admin_list_courses():
+    """
+    Returns all courses with their assigned lecturers.
+    """
+    if current_user.role != 'admin':
+        return jsonify(error="Unauthorized"), 403
+
+    courses = Course.query.all()
+    result = []
+
+    for c in courses:
+        lecturer = db.session.get(Lecturer, c.lecturer_id)
+        lecturer_user = db.session.get(User, lecturer.user_id) if lecturer else None
+        result.append({
+            "course_code": c.course_code,
+            "course_title": c.course_title,
+            "lecturer": lecturer_user.username if lecturer_user else "Unassigned"
+        })
+
+    return jsonify(courses=result), 200
+
+
+@app.route('/admin/enroll', methods=['POST'])
+@login_required
+def admin_enroll_student():
+    """
+    Allows admin to manually enroll a student in a course.
+    Body:
+    {
+        "matric_no": "U2021/001",
+        "course_code": "CSC301"
+    }
+    """
+    if current_user.role != 'admin':
+        return jsonify(error="Unauthorized"), 403
+
+    data = request.json
+    student = Student.query.filter_by(matric_no=data.get('matric_no')).first()
+    course = Course.query.filter_by(course_code=data.get('course_code')).first()
+
+    if not student:
+        return jsonify(error="Student not found"), 404
+
+    if not course:
+        return jsonify(error="Course not found"), 404
+
+    already_enrolled = Enrollment.query.filter_by(
+        student_id=student.id,
+        course_id=course.id
+    ).first()
+
+    if already_enrolled:
+        return jsonify(error="Student is already enrolled in this course"), 400
+
+    db.session.add(Enrollment(student_id=student.id, course_id=course.id))
+    db.session.commit()
+
+    return jsonify(message=f"Student {student.matric_no} enrolled in {course.course_title}"), 201
+
+
+@app.route('/admin/enroll', methods=['DELETE'])
+@login_required
+def admin_unenroll_student():
+    """
+    Allows admin to remove a student from a course.
+    Body:
+    {
+        "matric_no": "U2021/001",
+        "course_code": "CSC301"
+    }
+    """
+    if current_user.role != 'admin':
+        return jsonify(error="Unauthorized"), 403
+
+    data = request.json
+    student = Student.query.filter_by(matric_no=data.get('matric_no')).first()
+    course = Course.query.filter_by(course_code=data.get('course_code')).first()
+
+    if not student:
+        return jsonify(error="Student not found"), 404
+
+    if not course:
+        return jsonify(error="Course not found"), 404
+
+    enrollment = Enrollment.query.filter_by(
+        student_id=student.id,
+        course_id=course.id
+    ).first()
+
+    if not enrollment:
+        return jsonify(error="Student is not enrolled in this course"), 404
+
+    db.session.delete(enrollment)
+    db.session.commit()
+
+    return jsonify(message=f"Student {student.matric_no} removed from {course.course_title}"), 200
+
+
 # ----------------------
 # FRONTEND ROUTING (SPA catch-all)
 # ----------------------
-
-# Serve static files from frontend
 @app.route('/css/<path:filename>')
 def serve_css(filename):
     return send_from_directory(os.path.join(basedir, 'frontend/css'), filename)
@@ -239,16 +624,16 @@ def serve_components(filename):
 def serve_pages(filename):
     return send_from_directory(os.path.join(basedir, 'frontend/pages'), filename)
 
-# Catch-all route for SPA - serve index.html for all routes
-@app.route('/', defaults={'path': ''})
+@app.route('/')
+def index():
+    return send_from_directory(os.path.join(basedir, 'frontend'), 'index.html')
+
 @app.route('/<path:path>')
 def serve_spa(path):
-    # Check if it's an API route (starts with /api) - don't serve SPA for API calls
     if path.startswith('api/'):
         return jsonify(error="Not found"), 404
-    
-    # Serve the frontend index.html for all other routes
     return send_from_directory(os.path.join(basedir, 'frontend'), 'index.html')
+
 
 # ----------------------
 # RUN APP
@@ -257,4 +642,4 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
         print("Database created at:", app.config['SQLALCHEMY_DATABASE_URI'])
-    app.run(debug=True)
+    app.run(debug=True, port=8000)

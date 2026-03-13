@@ -1439,28 +1439,13 @@
                         
                         <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
                             <div class="form-group">
-                                <label for="login-identifier">Email or ID Number</label>
-                                <input type="text" id="login-identifier" class="form-control" placeholder="Enter email or ID" required>
+                                <label for="login-identifier">Username</label>
+                                <input type="text" id="login-identifier" class="form-control" placeholder="Enter your username" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="login-password">Password</label>
                                 <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="user-type">Login As</label>
-                                <select id="user-type" class="form-control" onchange="toggleIdField()">
-                                    <option value="student">Student</option>
-                                    <option value="instructor">Instructor</option>
-                                    <option value="admin">Administrator</option>
-                                </select>
-                            </div>
-
-                            <!-- ID field that changes based on user type -->
-                            <div class="form-group" id="id-field-container" style="display: none;">
-                                <label id="id-field-label"></label>
-                                <input type="text" id="id-field" class="form-control" placeholder="">
                             </div>
                             
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
@@ -1477,18 +1462,29 @@
                         
                         <form id="register-form" class="auth-form hidden" onsubmit="handleRegister(event)">
                             <div class="form-group">
-                                <label for="register-name">Full Name</label>
-                                <input type="text" id="register-name" class="form-control" placeholder="Enter your full name" required>
+                                <label for="register-name">Username</label>
+                                <input type="text" id="register-name" class="form-control" placeholder="Choose a username" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="register-email">Email Address</label>
-                                <input type="email" id="register-email" class="form-control" placeholder="Enter your email" required>
+                                <label for="register-identifier">Matric No / Staff ID</label>
+                                <input type="text" id="register-identifier" class="form-control" placeholder="Enter your matric no or staff ID" required>
                             </div>
-                            
+
                             <div class="form-group">
-                                <label for="register-identifier">Matric/Staff ID</label>
-                                <input type="text" id="register-identifier" class="form-control" placeholder="Enter your ID number" required>
+                                <label for="register-department">Department</label>
+                                <input type="text" id="register-department" class="form-control" placeholder="e.g. Computer Science" required>
+                            </div>
+
+                            <div class="form-group" id="register-level-group">
+                                <label for="register-level">Level</label>
+                                <select id="register-level" class="form-control">
+                                    <option value="100">100 Level</option>
+                                    <option value="200">200 Level</option>
+                                    <option value="300">300 Level</option>
+                                    <option value="400">400 Level</option>
+                                    <option value="500">500 Level</option>
+                                </select>
                             </div>
                             
                             <div class="form-group">
@@ -1505,8 +1501,7 @@
                                 <label for="register-type">Register As</label>
                                 <select id="register-type" class="form-control" onchange="updateRegisterIdPlaceholder()">
                                     <option value="student">Student</option>
-                                    <option value="instructor">Instructor</option>
-                                    <option value="admin">Administrator</option>
+                                    <option value="lecturer">Lecturer</option>
                                 </select>
                             </div>
                             
@@ -1569,17 +1564,17 @@
                         <div class="stat-card">
                             <i class="fas fa-calendar-check"></i>
                             <h3>Attendance Rate</h3>
-                            <div class="stat-value">92%</div>
+                            <div class="stat-value" id="student-stat-attendance">—</div>
                         </div>
                         <div class="stat-card">
                             <i class="fas fa-chart-line"></i>
                             <h3>Current GPA</h3>
-                            <div class="stat-value">4.75</div>
+                            <div class="stat-value" id="student-stat-gpa">—</div>
                         </div>
                         <div class="stat-card">
                             <i class="fas fa-book"></i>
                             <h3>Active Courses</h3>
-                            <div class="stat-value">12</div>
+                            <div class="stat-value" id="student-stat-courses">—</div>
                         </div>
                         <div class="stat-card">
                             <i class="fas fa-clock"></i>
@@ -1610,7 +1605,7 @@
                             <button class="btn btn-outline">View All Courses</button>
                         </div>
                         
-                        <div class="grid grid-3">
+                        <div class="grid grid-3" id="student-courses-grid">
                             <div class="course-card">
                                 <h4>Foundation of Sequential Programming</h4>
                                 <p><small>CSC207 - Mr. Akinlolu</small></p>
@@ -1696,11 +1691,11 @@
             </div>
         </div>
 
-        <!-- Instructor Dashboard -->
+        <!-- Lecturer Dashboard -->
         <div id="instructor-dashboard" class="module">
             <div class="section-title">
-                <h2>Instructor Dashboard</h2>
-                <p>Welcome back, Mr. Ibrahim.I.O!</p>
+                <h2>Lecturer Dashboard</h2>
+                <p id="lecturer-welcome">Welcome back!</p>
             </div>
             
             <div class="dashboard-container">
@@ -1735,58 +1730,33 @@
                         <div class="stat-card">
                             <i class="fas fa-book"></i>
                             <h3>Total Courses</h3>
-                            <div class="stat-value">12</div>
-                            <p style="color: #7f8c8d; font-size: 0.9rem;">Active: 9, Upcoming: 3</p>
+                            <div class="stat-value" id="lecturer-stat-courses">—</div>
+                            <p style="color: #7f8c8d; font-size: 0.9rem;">Assigned to you</p>
                         </div>
                         <div class="stat-card">
                             <i class="fas fa-users"></i>
                             <h3>Total Students</h3>
-                            <div class="stat-value">156</div>
+                            <div class="stat-value" id="lecturer-stat-students">—</div>
                             <p style="color: #7f8c8d; font-size: 0.9rem;">Across all courses</p>
                         </div>
                         <div class="stat-card">
                             <i class="fas fa-calendar-check"></i>
                             <h3>Attendance Today</h3>
-                            <div class="stat-value">92%</div>
+                            <div class="stat-value">—</div>
                             <p style="color: #7f8c8d; font-size: 0.9rem;">Average across courses</p>
                         </div>
                         <div class="stat-card">
                             <i class="fas fa-tasks"></i>
                             <h3>Pending Grading</h3>
-                            <div class="stat-value">24</div>
+                            <div class="stat-value">—</div>
                             <p style="color: #7f8c8d; font-size: 0.9rem;">Assignments to grade</p>
                         </div>
                     </div>
                     
                     <div class="card">
                         <h3>My Courses</h3>
-                        <div class="grid grid-3 mt-2">
-                            <div class="course-card">
-                                <h4>Foundation of Sequential Programming</h4>
-                                <p><small>CSC207 - 120 Students</small></p>
-                                <span class="status-badge status-present" style="display: inline-block; margin-top: 10px;">Active</span>
-                                <div class="mt-2">
-                                    <button class="btn btn-primary">Manage</button>
-                                </div>
-                            </div>
-                            
-                            <div class="course-card">
-                                <h4>Digital Logic Design</h4>
-                                <p><small>IFT211 - 90 Students</small></p>
-                                <span class="status-badge status-present" style="display: inline-block; margin-top: 10px;">Active</span>
-                                <div class="mt-2">
-                                    <button class="btn btn-primary">Manage</button>
-                                </div>
-                            </div>
-                            
-                            <div class="course-card">
-                                <h4>Introduction to software Engineering</h4>
-                                <p><small>SEN201 - 110 Students</small></p>
-                                <span class="status-badge" style="display: inline-block; margin-top: 10px; background: rgba(243, 156, 18, 0.1); color: var(--warning-color); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">Upcoming</span>
-                                <div class="mt-2">
-                                    <button class="btn btn-primary">Manage</button>
-                                </div>
-                            </div>
+                        <div class="grid grid-3 mt-2" id="lecturer-courses-grid">
+                            <p style="color:#7f8c8d;">Loading courses...</p>
                         </div>
                     </div>
                     
@@ -2277,26 +2247,26 @@
                         <div class="stat-card">
                             <i class="fas fa-users"></i>
                             <h3>Total Users</h3>
-                            <div class="stat-value">1,245</div>
-                            <p style="color: #7f8c8d; font-size: 0.9rem;">Students: 1,120 | Staff: 125</p>
+                            <div class="stat-value" id="admin-stat-users">—</div>
+                            <p style="color: #7f8c8d; font-size: 0.9rem;" id="admin-stat-users-sub">Loading...</p>
                         </div>
                         <div class="stat-card">
                             <i class="fas fa-book"></i>
                             <h3>Active Courses</h3>
-                            <div class="stat-value">84</div>
+                            <div class="stat-value" id="admin-stat-courses">—</div>
                             <p style="color: #7f8c8d; font-size: 0.9rem;">Across all departments</p>
                         </div>
                         <div class="stat-card">
                             <i class="fas fa-server"></i>
-                            <h3>System Load</h3>
-                            <div class="stat-value">24%</div>
-                            <p style="color: #7f8c8d; font-size: 0.9rem;">Optimal performance</p>
+                            <h3>Total Students</h3>
+                            <div class="stat-value" id="admin-stat-students">—</div>
+                            <p style="color: #7f8c8d; font-size: 0.9rem;">Registered</p>
                         </div>
                         <div class="stat-card">
-                            <i class="fas fa-calendar-check"></i>
-                            <h3>Today's Attendance</h3>
-                            <div class="stat-value">89%</div>
-                            <p style="color: #7f8c8d; font-size: 0.9rem;">Across all sessions</p>
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h3>Total Lecturers</h3>
+                            <div class="stat-value" id="admin-stat-lecturers">—</div>
+                            <p style="color: #7f8c8d; font-size: 0.9rem;">Registered</p>
                         </div>
                     </div>
                     
@@ -2330,20 +2300,40 @@
                         
                         <div class="card">
                             <h3>Quick Actions</h3>
-                            <div class="grid grid-2 mt-2">
-                                <button class="btn btn-secondary">
-                                    <i class="fas fa-user-plus"></i> Add User
-                                </button>
-                                <button class="btn btn-secondary">
+
+                            <!-- Add Course Form -->
+                            <div class="mt-2">
+                                <h4 style="margin-bottom:10px;">Add New Course</h4>
+                                <div class="form-group">
+                                    <input type="text" id="admin-course-code" class="form-control" placeholder="Course Code (e.g. CSC401)">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="admin-course-title" class="form-control" placeholder="Course Title">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="admin-staff-id" class="form-control" placeholder="Lecturer Staff ID">
+                                </div>
+                                <button class="btn btn-primary" onclick="adminAddCourse()">
                                     <i class="fas fa-plus-circle"></i> Add Course
                                 </button>
-                                <button class="btn btn-secondary">
-                                    <i class="fas fa-file-export"></i> Generate Report
-                                </button>
-                                <button class="btn btn-secondary">
-                                    <i class="fas fa-bell"></i> Send Announcement
+                            </div>
+
+                            <hr style="margin: 20px 0; border: none; border-top: 1px solid #eee;">
+
+                            <!-- Enroll Student Form -->
+                            <div class="mt-2">
+                                <h4 style="margin-bottom:10px;">Enroll Student in Course</h4>
+                                <div class="form-group">
+                                    <input type="text" id="admin-enroll-matric" class="form-control" placeholder="Student Matric No">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="admin-enroll-course" class="form-control" placeholder="Course Code">
+                                </div>
+                                <button class="btn btn-secondary" onclick="adminEnrollStudent()">
+                                    <i class="fas fa-user-plus"></i> Enroll Student
                                 </button>
                             </div>
+                        </div>
                             
                             <div class="mt-3">
                                 <h4>System Status</h4>
@@ -2477,7 +2467,7 @@
                 <ul class="footer-links">
                     <li><i class="fas fa-map-marker-alt"></i> Fountain University, Osogbo, Osun State, Nigeria</li>
                     <li><i class="fas fa-phone"></i> +234 801 234 5678</li>
-                    <li><i class="fas fa-envelope"></i> support@fountainuniversity.edu</li>
+                    <li><i class="fas fa-envelope"></i> info@smartcampus.edu.ng</li>
                 </ul>
             </div>
         </div>
@@ -2488,312 +2478,479 @@
     </footer>
 
     <script>
-        // ====== Module Navigation ======
-        function showModule(moduleId) {
-            // Hide all modules
-            const modules = document.querySelectorAll('.module');
-            modules.forEach(module => {
-                module.classList.remove('active');
-            });
-            
-            // Show selected module
-            const targetModule = document.getElementById(moduleId);
-            if (targetModule) {
-                targetModule.classList.add('active');
-            }
-            
-            // Update navigation buttons
-            updateNavButtons(moduleId);
+    // ============================================================
+    // MODULE NAVIGATION
+    // ============================================================
+    function showModule(moduleId) {
+        var modules = document.querySelectorAll('.module');
+        for (var i = 0; i < modules.length; i++) {
+            modules[i].classList.remove('active');
         }
-        
-        function updateNavButtons(activeModule) {
-            const navButtons = document.querySelectorAll('.nav-btn');
-            navButtons.forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Set active state for corresponding nav button
-            const moduleToNavMap = {
-                'home': 0,
-                'login': 1,
-                'student-dashboard': 2,
-                'admin': 3
-            };
-            
-            if (moduleToNavMap[activeModule] !== undefined) {
-                navButtons[moduleToNavMap[activeModule]].classList.add('active');
-            }
+        var target = document.getElementById(moduleId);
+        if (target) { target.classList.add('active'); }
+        updateNavButtons(moduleId);
+    }
+
+    function updateNavButtons(activeModule) {
+        var navButtons = document.querySelectorAll('.nav-btn');
+        for (var i = 0; i < navButtons.length; i++) {
+            navButtons[i].classList.remove('active');
         }
-        
-        // ====== Auth Tab Switching ======
-        function switchTab(tab) {
-            const loginForm = document.getElementById('login-form');
-            const registerForm = document.getElementById('register-form');
-            const loginFooter = document.getElementById('login-footer');
-            const registerFooter = document.getElementById('register-footer');
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            
-            tabBtns.forEach(btn => btn.classList.remove('active'));
-            
-            if (tab === 'login') {
-                document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
-                loginForm.classList.remove('hidden');
-                registerForm.classList.add('hidden');
-                loginFooter.classList.remove('hidden');
-                registerFooter.classList.add('hidden');
-            } else {
-                document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
-                loginForm.classList.add('hidden');
-                registerForm.classList.remove('hidden');
-                loginFooter.classList.add('hidden');
-                registerFooter.classList.remove('hidden');
-            }
+        var map = { 'home': 0, 'login': 1, 'student-dashboard': 2, 'admin': 3 };
+        if (map[activeModule] !== undefined && navButtons[map[activeModule]]) {
+            navButtons[map[activeModule]].classList.add('active');
         }
-        
-        // ====== Login/Register Form Handling ======
-        function handleLogin(event) {
-            event.preventDefault();
-            const identifier = document.getElementById('login-identifier').value;
-            const password = document.getElementById('login-password').value;
-            const userType = document.getElementById('user-type').value;
-            const idField = document.getElementById('id-field').value;
-            
-            // Simple validation
-            if (!identifier || !password) {
-                alert('Please fill in all required fields');
-                return;
-            }
-            
-            // Check ID field if required
-            if (userType !== 'student' && !idField) {
-                const idLabel = document.getElementById('id-field-label').textContent;
-                alert(`Please enter your ${idLabel}`);
-                return;
-            }
-            
-            // Determine which dashboard to show based on user type
-            let targetModule = 'student-dashboard';
-            if (userType === 'instructor') {
-                targetModule = 'instructor-dashboard';
-            } else if (userType === 'admin') {
-                targetModule = 'admin';
-            }
-            
-            // Redirect to appropriate dashboard
-            showModule(targetModule);
-            
-            // Show success message
-            alert(`Login successful! Welcome to Smart Campus as a ${userType}.`);
+    }
+
+    // ============================================================
+    // AUTH TAB SWITCHING
+    // ============================================================
+    function switchTab(tab) {
+        var loginForm = document.getElementById('login-form');
+        var registerForm = document.getElementById('register-form');
+        var loginFooter = document.getElementById('login-footer');
+        var registerFooter = document.getElementById('register-footer');
+        var tabBtns = document.querySelectorAll('.tab-btn');
+        for (var i = 0; i < tabBtns.length; i++) {
+            tabBtns[i].classList.remove('active');
         }
-        
-        function handleRegister(event) {
-            event.preventDefault();
-            const name = document.getElementById('register-name').value;
-            const email = document.getElementById('register-email').value;
-            const identifier = document.getElementById('register-identifier').value;
-            const password = document.getElementById('register-password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            const userType = document.getElementById('register-type').value;
-            
-            // Validation
-            if (!name || !email || !identifier || !password || !confirmPassword) {
-                alert('Please fill in all required fields');
-                return;
+        if (tab === 'login') {
+            tabBtns[0].classList.add('active');
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+            loginFooter.classList.remove('hidden');
+            registerFooter.classList.add('hidden');
+        } else {
+            tabBtns[1].classList.add('active');
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            loginFooter.classList.add('hidden');
+            registerFooter.classList.remove('hidden');
+        }
+    }
+
+    // ============================================================
+    // LOGIN
+    // ============================================================
+    function handleLogin(event) {
+        event.preventDefault();
+        var username = document.getElementById('login-identifier').value.trim();
+        var password = document.getElementById('login-password').value;
+        if (!username || !password) { alert('Please fill in all fields'); return; }
+
+        fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: username, password: password })
+        })
+        .then(function(res) { return res.json().then(function(data) { return { ok: res.ok, data: data }; }); })
+        .then(function(result) {
+            if (!result.ok) { alert(result.data.error || 'Login failed'); return; }
+            sessionStorage.setItem('role', result.data.role);
+            sessionStorage.setItem('username', username);
+            if (result.data.role === 'student') {
+                showModule('student-dashboard');
+                loadStudentDashboard();
+            } else if (result.data.role === 'lecturer') {
+                showModule('instructor-dashboard');
+                loadLecturerDashboard();
+            } else if (result.data.role === 'admin') {
+                showModule('admin');
+                loadAdminDashboard();
             }
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
-                return;
-            }
-            
-            // Registration logic would go here
-            alert(`Registration successful! Welcome ${name}. You can now login as a ${userType}.`);
-            
-            // Switch to login tab
+        })
+        .catch(function() { alert('Cannot connect to server. Make sure Flask is running.'); });
+    }
+
+    // ============================================================
+    // REGISTER
+    // ============================================================
+    function handleRegister(event) {
+        event.preventDefault();
+        var username   = document.getElementById('register-name').value.trim();
+        var identifier = document.getElementById('register-identifier').value.trim();
+        var department = document.getElementById('register-department').value.trim();
+        var password   = document.getElementById('register-password').value;
+        var confirm    = document.getElementById('confirm-password').value;
+        var role       = document.getElementById('register-type').value;
+
+        if (!username || !identifier || !department || !password || !confirm) {
+            alert('Please fill in all fields'); return;
+        }
+        if (password !== confirm) { alert('Passwords do not match'); return; }
+
+        var payload = { username: username, password: password, role: role, department: department };
+        if (role === 'student') {
+            payload.matric_no = identifier;
+            payload.level = document.getElementById('register-level').value;
+        } else {
+            payload.staff_id = identifier;
+        }
+
+        fetch('/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(function(res) { return res.json().then(function(data) { return { ok: res.ok, data: data }; }); })
+        .then(function(result) {
+            if (!result.ok) { alert(result.data.error || 'Registration failed'); return; }
+            alert('Registration successful! You can now log in.');
             switchTab('login');
+        })
+        .catch(function() { alert('Cannot connect to server. Make sure Flask is running.'); });
+    }
+
+    function updateRegisterIdPlaceholder() {
+        var type  = document.getElementById('register-type').value;
+        var field = document.getElementById('register-identifier');
+        var level = document.getElementById('register-level-group');
+        if (type === 'student') {
+            field.placeholder = 'Enter your matric number';
+            if (level) level.style.display = 'block';
+        } else {
+            field.placeholder = 'Enter your staff ID';
+            if (level) level.style.display = 'none';
         }
-        
-        // ====== Dynamic ID Field ======
-        function toggleIdField() {
-            const userType = document.getElementById('user-type').value;
-            const idContainer = document.getElementById('id-field-container');
-            const idLabel = document.getElementById('id-field-label');
-            const idField = document.getElementById('id-field');
-            
-            if (userType === 'student') {
-                idContainer.style.display = 'none';
-                idField.required = false;
-            } else {
-                idContainer.style.display = 'block';
-                idField.required = true;
-                
-                if (userType === 'instructor') {
-                    idLabel.textContent = 'Staff ID';
-                    idField.placeholder = 'Enter your staff ID';
-                } else if (userType === 'admin') {
-                    idLabel.textContent = 'Admin ID';
-                    idField.placeholder = 'Enter your admin ID';
+    }
+
+    // ============================================================
+    // STUDENT DASHBOARD
+    // ============================================================
+    function loadStudentDashboard() {
+        fetch('/student/dashboard')
+        .then(function(res) {
+            if (!res.ok) { showModule('home'); return null; }
+            return res.json();
+        })
+        .then(function(data) {
+            if (!data) return;
+
+            var attEl = document.getElementById('student-stat-attendance');
+            if (attEl) attEl.textContent = data.attendance_percentage + '%';
+
+            var courseEl = document.getElementById('student-stat-courses');
+            if (courseEl) courseEl.textContent = data.courses.length;
+
+            if (data.results && data.results.length > 0) {
+                var avg = 0;
+                for (var i = 0; i < data.results.length; i++) avg += data.results[i].score;
+                avg = avg / data.results.length;
+                var gpaEl = document.getElementById('student-stat-gpa');
+                if (gpaEl) gpaEl.textContent = (avg / 20).toFixed(2);
+            }
+
+            var grid = document.getElementById('student-courses-grid');
+            if (grid) {
+                if (data.courses.length === 0) {
+                    grid.innerHTML = '<p style="color:#7f8c8d;">No enrolled courses yet.</p>';
+                } else {
+                    var html = '';
+                    for (var i = 0; i < data.courses.length; i++) {
+                        html += '<div class="course-card">';
+                        html += '<h4>' + data.courses[i] + '</h4>';
+                        html += '<span class="status-badge status-present" style="display:inline-block;margin-top:10px;">Enrolled</span>';
+                        html += '<div class="mt-2"><button class="btn btn-primary" onclick="showModule(\'course-detail\')">Enter Course</button></div>';
+                        html += '</div>';
+                    }
+                    grid.innerHTML = html;
                 }
             }
-        }
-        
-        function updateRegisterIdPlaceholder() {
-            const userType = document.getElementById('register-type').value;
-            const idField = document.getElementById('register-identifier');
-            
-            if (userType === 'student') {
-                idField.placeholder = 'Enter your matric number';
-            } else if (userType === 'instructor') {
-                idField.placeholder = 'Enter your staff ID';
-            } else if (userType === 'admin') {
-                idField.placeholder = 'Enter your admin ID';
-            }
-        }
-        
-        // ====== Sidebar Navigation ======
-        function setActiveSidebar(clickedItem) {
-            const sidebarItems = document.querySelectorAll('.sidebar-item');
-            sidebarItems.forEach(item => item.classList.remove('active'));
-            clickedItem.classList.add('active');
-        }
-        
-        function setActiveProfileNav(clickedItem) {
-            const navItems = document.querySelectorAll('.profile-nav-btn');
-            navItems.forEach(item => item.classList.remove('active'));
-            clickedItem.classList.add('active');
-        }
-        
-        function setActiveAdminNav(clickedItem) {
-            const navItems = document.querySelectorAll('.admin-nav-btn');
-            navItems.forEach(item => item.classList.remove('active'));
-            clickedItem.classList.add('active');
-        }
-        
-        // ====== Course Tab Switching ======
-        function switchCourseTab(tabId) {
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            const tabBtns = document.querySelectorAll('.course-tab-btn');
-            
-            // Hide all tab panes
-            tabPanes.forEach(pane => pane.classList.remove('active'));
-            
-            // Remove active class from all tab buttons
-            tabBtns.forEach(btn => btn.classList.remove('active'));
-            
-            // Show selected tab pane
-            const targetPane = document.getElementById(tabId);
-            if (targetPane) {
-                targetPane.classList.add('active');
-            }
-            
-            // Activate corresponding tab button
-            const activeBtn = document.querySelector(`.course-tab-btn[onclick*="${tabId}"]`);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-            }
-        }
-        
-        // ====== Attendance Functions ======
-        function setAttendance(button, status) {
-            // Get parent controls container
-            const controls = button.parentElement;
-            
-            // Remove active class from all buttons in the same container
-            const allButtons = controls.querySelectorAll('.attendance-btn');
-            allButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
-            button.classList.add('active');
-            
-            // Update summary (simplified example)
-            updateAttendanceSummary();
-        }
-        
-        function markAllPresent(session) {
-            // Get all present buttons in the specified session
-            const sessionCard = document.querySelector(`.attendance-session-card`);
-            const presentButtons = sessionCard.querySelectorAll('.btn-present');
-            
-            presentButtons.forEach(button => {
-                // Remove active class from all buttons in the same controls
-                const controls = button.parentElement;
-                const allButtons = controls.querySelectorAll('.attendance-btn');
-                allButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active to present button
-                button.classList.add('active');
-            });
-            
-            updateAttendanceSummary();
-            alert(`All students marked as present for ${session} session`);
-        }
-        
-        function updateAttendanceSummary() {
-            // This function would update the attendance summary stats
-            // For this demo, we'll just update the present count
-            const presentCount = document.querySelectorAll('.btn-present.active').length;
-            const presentValue = document.querySelector('.attendance-summary .summary-card:nth-child(2) .value');
-            
-            if (presentValue) {
-                presentValue.textContent = presentCount + 37; // Adding base value for demo
-            }
-        }
-        
-        // ====== Logout Function with Confirmation ======
-        function confirmLogout() {
-            if (confirm("Are you sure you want to log out?")) {
-                // Show a logout message
-                alert("You have been successfully logged out.");
-                
-                // Redirect to home page
-                showModule('home');
-            }
-        }
-        
-        // ====== Social Media Links Function ======
-        function openSocialMedia(platform) {
-            const urls = {
-                facebook: 'https://facebook.com',
-                twitter: 'https://x.com',
-                instagram: 'https://instagram.com',
-                linkedin: 'https://linkedin.com'
-            };
-            
-            if (urls[platform]) {
-                window.open(urls[platform], '_blank');
-            }
-        }
-        
-        // ====== Initialize ======
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set initial state
-            updateRegisterIdPlaceholder();
-            toggleIdField();
-            
-            // Initialize attendance summary
-            updateAttendanceSummary();
-            
-            // Add event listeners for dynamic updates
-            document.getElementById('user-type').addEventListener('change', toggleIdField);
-            document.getElementById('register-type').addEventListener('change', updateRegisterIdPlaceholder);
-            
-            // Add event listeners to social media buttons
-            document.querySelectorAll('.social-btn').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const icon = this.querySelector('i');
-                    if (icon.classList.contains('fa-facebook-f')) {
-                        openSocialMedia('facebook');
-                    } else if (icon.classList.contains('fa-x-twitter')) {
-                        openSocialMedia('twitter');
-                    } else if (icon.classList.contains('fa-instagram')) {
-                        openSocialMedia('instagram');
-                    } else if (icon.classList.contains('fa-linkedin-in')) {
-                        openSocialMedia('linkedin');
+
+            if (data.results && data.results.length > 0) {
+                var mainEl = document.querySelector('#student-dashboard .dashboard-main');
+                if (mainEl) {
+                    var lastCard = mainEl.querySelector('.card:last-child');
+                    if (lastCard) {
+                        var tableHtml = '<h3>My Results</h3>';
+                        tableHtml += '<table style="width:100%;border-collapse:collapse;margin-top:15px;">';
+                        tableHtml += '<thead><tr style="background:var(--light-color);">';
+                        tableHtml += '<th style="padding:12px;text-align:left;">Course</th>';
+                        tableHtml += '<th style="padding:12px;text-align:left;">Score</th>';
+                        tableHtml += '<th style="padding:12px;text-align:left;">Grade</th>';
+                        tableHtml += '</tr></thead><tbody>';
+                        for (var i = 0; i < data.results.length; i++) {
+                            var r = data.results[i];
+                            tableHtml += '<tr style="border-bottom:1px solid #eee;">';
+                            tableHtml += '<td style="padding:12px;">' + r.course + '</td>';
+                            tableHtml += '<td style="padding:12px;">' + r.score + '</td>';
+                            tableHtml += '<td style="padding:12px;font-weight:bold;color:var(--primary-color);">' + r.grade + '</td>';
+                            tableHtml += '</tr>';
+                        }
+                        tableHtml += '</tbody></table>';
+                        lastCard.innerHTML = tableHtml;
                     }
-                });
-            });
-        });
-    </script>
+                }
+            }
+        })
+        .catch(function(err) { console.error('Student dashboard error:', err); });
+    }
+
+    // ============================================================
+    // LECTURER DASHBOARD
+    // ============================================================
+    function loadLecturerDashboard() {
+        fetch('/lecturer/dashboard')
+        .then(function(res) {
+            if (!res.ok) { showModule('home'); return null; }
+            return res.json();
+        })
+        .then(function(data) {
+            if (!data) return;
+
+            var username = sessionStorage.getItem('username') || 'Lecturer';
+            var welcomeEl = document.getElementById('lecturer-welcome');
+            if (welcomeEl) welcomeEl.textContent = 'Welcome back, ' + username + '!';
+
+            var statEl = document.getElementById('lecturer-stat-courses');
+            if (statEl) statEl.textContent = data.courses.length;
+
+            var grid = document.getElementById('lecturer-courses-grid');
+            if (grid) {
+                if (data.courses.length === 0) {
+                    grid.innerHTML = '<p style="color:#7f8c8d;">No courses assigned yet.</p>';
+                } else {
+                    var html = '';
+                    for (var i = 0; i < data.courses.length; i++) {
+                        var c = data.courses[i];
+                        html += '<div class="course-card">';
+                        html += '<h4>' + c.course_title + '</h4>';
+                        html += '<p><small>' + c.course_code + '</small></p>';
+                        html += '<span class="status-badge status-present" style="display:inline-block;margin-top:10px;">Active</span>';
+                        html += '<div class="mt-2"><button class="btn btn-primary" onclick="showModule(\'attendance\')">Mark Attendance</button></div>';
+                        html += '</div>';
+                    }
+                    grid.innerHTML = html;
+
+                    var sel = document.getElementById('attendance-course');
+                    if (sel) {
+                        sel.innerHTML = '';
+                        for (var i = 0; i < data.courses.length; i++) {
+                            var opt = document.createElement('option');
+                            opt.value = data.courses[i].course_code;
+                            opt.textContent = data.courses[i].course_code + ' - ' + data.courses[i].course_title;
+                            sel.appendChild(opt);
+                        }
+                    }
+                }
+            }
+        })
+        .catch(function(err) { console.error('Lecturer dashboard error:', err); });
+    }
+
+    // ============================================================
+    // ADMIN DASHBOARD
+    // ============================================================
+    function loadAdminDashboard() {
+        fetch('/admin/dashboard')
+        .then(function(res) {
+            if (!res.ok) { showModule('home'); return null; }
+            return res.json();
+        })
+        .then(function(data) {
+            if (!data) return;
+            var u = document.getElementById('admin-stat-users');
+            var c = document.getElementById('admin-stat-courses');
+            var s = document.getElementById('admin-stat-students');
+            var l = document.getElementById('admin-stat-lecturers');
+            var sub = document.getElementById('admin-stat-users-sub');
+            if (u) u.textContent = data.total_users;
+            if (c) c.textContent = data.total_courses;
+            if (s) s.textContent = data.total_students;
+            if (l) l.textContent = data.total_lecturers;
+            if (sub) sub.textContent = 'Students: ' + data.total_students + ' | Lecturers: ' + data.total_lecturers;
+        })
+        .catch(function(err) { console.error('Admin dashboard error:', err); });
+    }
+
+    // ============================================================
+    // ADMIN ACTIONS
+    // ============================================================
+    function adminAddCourse() {
+        var code  = document.getElementById('admin-course-code').value.trim();
+        var title = document.getElementById('admin-course-title').value.trim();
+        var staff = document.getElementById('admin-staff-id').value.trim();
+        if (!code || !title || !staff) { alert('Please fill in all course fields'); return; }
+
+        fetch('/admin/course', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ course_code: code, course_title: title, staff_id: staff })
+        })
+        .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+        .then(function(r) {
+            alert(r.ok ? r.data.message : (r.data.error || 'Failed'));
+            if (r.ok) {
+                document.getElementById('admin-course-code').value = '';
+                document.getElementById('admin-course-title').value = '';
+                document.getElementById('admin-staff-id').value = '';
+                loadAdminDashboard();
+            }
+        })
+        .catch(function() { alert('Cannot connect to server.'); });
+    }
+
+    function adminEnrollStudent() {
+        var matric = document.getElementById('admin-enroll-matric').value.trim();
+        var course = document.getElementById('admin-enroll-course').value.trim();
+        if (!matric || !course) { alert('Please enter matric number and course code'); return; }
+
+        fetch('/admin/enroll', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ matric_no: matric, course_code: course })
+        })
+        .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+        .then(function(r) {
+            alert(r.ok ? r.data.message : (r.data.error || 'Failed'));
+            if (r.ok) {
+                document.getElementById('admin-enroll-matric').value = '';
+                document.getElementById('admin-enroll-course').value = '';
+            }
+        })
+        .catch(function() { alert('Cannot connect to server.'); });
+    }
+
+    // ============================================================
+    // SAVE ATTENDANCE
+    // ============================================================
+    function saveAttendance() {
+        var courseSelect = document.getElementById('attendance-course');
+        var dateInput    = document.getElementById('attendance-date');
+        if (!courseSelect || !dateInput) return;
+
+        var course_code = courseSelect.value.split(' - ')[0].trim();
+        var attendanceDate = dateInput.value;
+        var items = document.querySelectorAll('.student-attendance-item');
+        var attendanceList = [];
+
+        for (var i = 0; i < items.length; i++) {
+            var matricEl  = items[i].querySelector('.student-info p');
+            var activeBtn = items[i].querySelector('.attendance-btn.active');
+            if (matricEl && activeBtn) {
+                var status = 'Absent';
+                if (activeBtn.classList.contains('btn-present')) status = 'Present';
+                attendanceList.push({ matric_no: matricEl.textContent.trim(), status: status });
+            }
+        }
+
+        if (attendanceList.length === 0) { alert('No students found.'); return; }
+
+        fetch('/lecturer/attendance', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ course_code: course_code, date: attendanceDate, attendance: attendanceList })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            var msg = data.message || 'Done';
+            if (data.warnings && data.warnings.length) msg += '\n\nWarnings:\n' + data.warnings.join('\n');
+            alert(msg);
+        })
+        .catch(function() { alert('Cannot connect to server.'); });
+    }
+
+    // ============================================================
+    // LOGOUT
+    // ============================================================
+    function confirmLogout() {
+        if (!confirm('Are you sure you want to log out?')) return;
+        fetch('/logout').catch(function() {});
+        sessionStorage.clear();
+        showModule('home');
+    }
+
+    // ============================================================
+    // SIDEBAR / TAB NAVIGATION
+    // ============================================================
+    function setActiveSidebar(el) {
+        var items = document.querySelectorAll('.sidebar-item');
+        for (var i = 0; i < items.length; i++) items[i].classList.remove('active');
+        el.classList.add('active');
+    }
+
+    function setActiveAdminNav(el) {
+        var items = document.querySelectorAll('.admin-nav-btn');
+        for (var i = 0; i < items.length; i++) items[i].classList.remove('active');
+        el.classList.add('active');
+    }
+
+    function setActiveProfileNav(el) {
+        var items = document.querySelectorAll('.profile-nav-btn');
+        for (var i = 0; i < items.length; i++) items[i].classList.remove('active');
+        el.classList.add('active');
+    }
+
+    function switchCourseTab(tabId) {
+        var panes = document.querySelectorAll('.tab-pane');
+        var btns  = document.querySelectorAll('.course-tab-btn');
+        for (var i = 0; i < panes.length; i++) panes[i].classList.remove('active');
+        for (var i = 0; i < btns.length; i++)  btns[i].classList.remove('active');
+        var target = document.getElementById(tabId);
+        if (target) target.classList.add('active');
+        var activeBtn = document.querySelector('.course-tab-btn[onclick*="' + tabId + '"]');
+        if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    // ============================================================
+    // ATTENDANCE BUTTON TOGGLE
+    // ============================================================
+    function setAttendance(button, status) {
+        var controls = button.parentElement;
+        var all = controls.querySelectorAll('.attendance-btn');
+        for (var i = 0; i < all.length; i++) all[i].classList.remove('active');
+        button.classList.add('active');
+        updateAttendanceSummary();
+    }
+
+    function markAllPresent(session) {
+        var card = document.querySelector('.attendance-session-card');
+        if (!card) return;
+        var presentBtns = card.querySelectorAll('.btn-present');
+        for (var i = 0; i < presentBtns.length; i++) {
+            var controls = presentBtns[i].parentElement;
+            var all = controls.querySelectorAll('.attendance-btn');
+            for (var j = 0; j < all.length; j++) all[j].classList.remove('active');
+            presentBtns[i].classList.add('active');
+        }
+        updateAttendanceSummary();
+        alert('All students marked as present for ' + session + ' session');
+    }
+
+    function updateAttendanceSummary() {
+        var presentCount = document.querySelectorAll('.btn-present.active').length;
+        var el = document.querySelector('.attendance-summary .summary-card:nth-child(2) .value');
+        if (el) el.textContent = presentCount;
+    }
+
+    // ============================================================
+    // REGISTER FORM DYNAMIC FIELDS
+    // ============================================================
+    function toggleIdField() {}  // kept for any legacy calls, no longer needed
+
+    // ============================================================
+    // SOCIAL LINKS
+    // ============================================================
+    function openSocialMedia(platform) {
+        var urls = {
+            facebook: 'https://facebook.com',
+            twitter: 'https://x.com',
+            instagram: 'https://instagram.com',
+            linkedin: 'https://linkedin.com'
+        };
+        if (urls[platform]) window.open(urls[platform], '_blank');
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+        var registerType = document.getElementById('register-type');
+        if (registerType) {
+            updateRegisterIdPlaceholder();
+            registerType.addEventListener('change', updateRegisterIdPlaceholder);
+        }
+    });
+</script>
 </body>
 </html>

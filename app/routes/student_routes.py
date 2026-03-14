@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, app, request, jsonify
 from flask_login import login_required, current_user
 
 from ..extensions import db
@@ -39,10 +39,19 @@ def dashboard():
             'grade': r.grade(),
         })
 
+    # Gpa calculation 
+    if results:
+        grade_points = {"A": 5, "B": 4, "C": 3, "D": 2, "E": 1, "F": 0}
+        gpa = round(sum(grade_points.get(r.grade(), 0) for r in results) / len(results), 2)
+
+
+
     return jsonify(
         courses=courses,
         attendance_percentage=attendance_pct,
         results=result_data,
+        gpa=gpa,
+        name= current_user.username
     )
 
 
@@ -83,6 +92,62 @@ def enroll():
 
     if already_enrolled:
         return jsonify(error="Already enrolled in this course"), 400
+    
+@student_bp.route('/student/attendance-detail', methods=['GET'])
+@login_required
+def student_attendance_detail():
+    if current_user.role != 'student':
+        return jsonify(error="Unauthorized"), 403
+    student = Student.query.filter_by(user_id=current_user.id).first()
+    enrollments = Enrollment.query.filter_by(student_id=student.id).all()
+    breakdown = []
+    for e in enrollments:
+        course = db.session.get(Course, e.course_id)
+        if not course: continue
+        records = Attendance.query.filter_by(
+            student_id=student.id, course_id=course.id).all()
+        total = len(records)
+        present = len([r for r in records if r.status == "Present"])
+        rate = round(present / total * 100, 1) if total else 0
+        breakdown.append({
+            "course_code":  course.course_code,
+            "course_title": course.course_title,
+            "attended": present, "total": total,
+            "absent": total - present,
+            "rate": rate,
+            "at_risk": rate < 70
+        })
+    return jsonify(breakdown=breakdown), 200
+
+@student_bp.route('/student/grades-detail', methods=['GET'])
+@login_required
+def student_grades_detail():
+    if current_user.role != 'student':
+        return jsonify(error="Unauthorized"), 403
+    student = Student.query.filter_by(user_id=current_user.id).first()
+    results = Result.query.filter_by(student_id=student.id).all()
+    data = []
+    total_gp = 0
+    total_units = 0
+    for r in results:
+        course = db.session.get(Course, r.course_id)
+        if not course: continue
+        units = 3  # default; extend model to store units if needed
+        gp = {"A":5,"B":4,"C":3,"D":2,"E":1}.get(r.grade(), 0) * units
+        total_gp += gp
+        total_units += units
+        data.append({
+            "course_code":  course.course_code,
+            "course_title": course.course_title,
+            "ca_score":   r.ca_score,
+            "exam_score": r.exam_score,
+            "total":      r.total,
+            "grade":      r.grade(),
+            "grade_points": gp
+        })
+    gpa = round(total_gp / total_units, 2) if total_units else 0
+    return jsonify(results=data, gpa=gpa, total_units=total_units), 200
+
 
     db.session.add(Enrollment(student_id=student.id, course_id=course.id))
     db.session.commit()

@@ -19,19 +19,21 @@ def register():
     db.session.add(user)
     db.session.commit()
 
+    identifier = data.get('identifier', '')
     if data['role'] == 'student':
         db.session.add(Student(
             user_id=user.id,
-            matric_no=data['matric_no'],
-            department=data['department'],
-            level=data['level'],
+            full_name=data.get('full_name', data.get('username', '')),
+            matric_no=identifier,
+            department=data.get('department', ''),
+            level=data.get('level', '100')
         ))
 
     if data['role'] == 'lecturer':
         db.session.add(Lecturer(
             user_id=user.id,
-            staff_id=data['staff_id'],
-            department=data['department'],
+            staff_id=identifier,
+            department=data.get('department', '')
         ))
 
     db.session.commit()
@@ -41,17 +43,17 @@ def register():
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.json
-    user = User.query.filter_by(username=data['username']).first()
+    user = User.query.filter_by(username=data.get('identifier') or data.get('username')).first()
 
     if not user or not bcrypt.check_password_hash(user.password, data['password']):
         return jsonify(error="Invalid username or password"), 401
 
     login_user(user)
-    return jsonify(message="Login successful", role=user.role), 200
+    return jsonify(message="Login successful", role=user.role, username=user.username), 200
+    
 
 
 @auth_bp.route('/logout')
-@login_required
 def logout():
     logout_user()
     return jsonify(message="Logged out successfully"), 200

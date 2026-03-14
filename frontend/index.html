@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Campus System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ====== Main Navigation ====== -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <div class="logo" onclick="showModule('home')">
+            <i class="fas fa-graduation-cap"></i>
+            <h1>Smart Campus</h1>
+        </div>
+        <div class="nav-links">
+            <button class="nav-btn" onclick="showModule('home')"><i class="fas fa-home"></i> Home</button>
+            <button class="nav-btn" onclick="showModule('login')"><i class="fas fa-sign-in-alt"></i> Login</button>
+            <button class="nav-btn secondary" onclick="showModule('student-dashboard')"><i class="fas fa-user-graduate"></i> Student</button>
+            <button class="nav-btn secondary" onclick="showModule('instructor-dashboard')"><i class="fas fa-chalkboard-teacher"></i> Lecturer</button>
+            <button class="nav-btn secondary" onclick="showModule('admin')"><i class="fas fa-cogs"></i> Admin</button>
+        </div>
+    </div>
+</nav>
+
+<!-- ====== Main Content ====== -->
+<main class="content-area">
+
+<!-- ══════════════════════════════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════════════════════════════ -->
+<div id="home" class="module active">
+    <section class="hero">
+        <h2>Welcome to Smart Campus</h2>
+        <p>A comprehensive campus management system designed to streamline academic processes, enhance student engagement, and simplify administrative tasks.</p>
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="showModule('login')"><i class="fas fa-sign-in-alt"></i> Get Started</button>
+            <button class="btn btn-secondary" onclick="showModule('learn-more')"><i class="fas fa-info-circle"></i> Learn More</button>
+        </div>
+    </section>
+
+    <div class="section-title">
+        <h2>Quick Links</h2>
+        <p>Access essential campus services with just one click</p>
+    </div>
+    <div class="grid grid-4">
+        <div class="feature-card">
+            <i class="fas fa-user-graduate"></i><h3>Student Portal</h3>
+            <p>Access your courses, grades, attendance, and academic resources</p>
+            <button class="btn btn-primary mt-1" onclick="showModule('student-dashboard')">Go to Portal</button>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-chalkboard-teacher"></i><h3>Instructor Portal</h3>
+            <p>Manage courses, track attendance, and grade assignments</p>
+            <button class="btn btn-primary mt-1" onclick="showModule('instructor-dashboard')">Go to Portal</button>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-calendar-check"></i><h3>Attendance System</h3>
+            <p>Mark and track attendance for all your classes</p>
+            <button class="btn btn-primary mt-1" onclick="showModule('attendance')">View Attendance</button>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-cogs"></i><h3>Admin Panel</h3>
+            <p>System administration and management tools</p>
+            <button class="btn btn-primary mt-1" onclick="showModule('admin')">Admin Access</button>
+        </div>
+    </div>
+
+    <div class="section-title mt-3">
+        <h2>Platform Highlights</h2>
+        <p>Everything you need to manage your academic life</p>
+    </div>
+    <div class="grid grid-3">
+        <div class="card" style="border-top:4px solid var(--primary-color)">
+            <i class="fas fa-chart-line" style="font-size:2rem;color:var(--primary-color);margin-bottom:12px"></i>
+            <h3 style="color:var(--secondary-color);margin-bottom:8px">Real-time Analytics</h3>
+            <p class="text-muted">Track attendance rates, grade distributions, and academic performance across all departments in real time.</p>
+        </div>
+        <div class="card" style="border-top:4px solid var(--success-color)">
+            <i class="fas fa-shield-alt" style="font-size:2rem;color:var(--success-color);margin-bottom:12px"></i>
+            <h3 style="color:var(--secondary-color);margin-bottom:8px">Role-Based Access</h3>
+            <p class="text-muted">Students, lecturers, and admins each get a tailored experience with appropriate data access controls.</p>
+        </div>
+        <div class="card" style="border-top:4px solid var(--warning-color)">
+            <i class="fas fa-bell" style="font-size:2rem;color:var(--warning-color);margin-bottom:12px"></i>
+            <h3 style="color:var(--secondary-color);margin-bottom:8px">Smart Notifications</h3>
+            <p class="text-muted">Automated alerts for at-risk attendance, grade releases, deadlines, and campus-wide announcements.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     LEARN MORE
+══════════════════════════════════════════════════════════════ -->
+<div id="learn-more" class="module">
+    <a class="back-to-home" onclick="showModule('home')"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <section class="learn-more-hero">
+        <h2>About Smart Campus System</h2>
+        <p>Transforming Education Through Technology</p>
+    </section>
+    <div class="info-section">
+        <div class="info-card">
+            <h3>What is Smart Campus?</h3>
+            <p>Smart Campus is an innovative, all-in-one campus management system designed to revolutionize the way educational institutions operate. Our platform integrates cutting-edge technology with user-friendly interfaces to create a seamless digital ecosystem for students, faculty, and administrators.</p>
+            <div class="info-grid mt-2">
+                <div class="info-item"><h4><i class="fas fa-rocket"></i> Our Mission</h4><p>To empower educational institutions with technology that enhances learning outcomes, improves operational efficiency, and fosters collaboration between all stakeholders.</p></div>
+                <div class="info-item"><h4><i class="fas fa-eye"></i> Our Vision</h4><p>To become the leading campus management solution worldwide, recognized for innovation, reliability, and positive impact on educational excellence.</p></div>
+                <div class="info-item"><h4><i class="fas fa-star"></i> Our Values</h4><p>Innovation, Accessibility, Security, Collaboration, and Excellence guide every aspect of our platform development and user experience.</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="info-section">
+        <div class="info-card">
+            <h3>Features by Role</h3>
+            <div class="grid grid-2 mt-2">
+                <div><h4>For Students</h4><ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Real-time attendance tracking</li>
+                    <li><i class="fas fa-check-circle"></i> Instant grade notifications</li>
+                    <li><i class="fas fa-check-circle"></i> Online assignment submission</li>
+                    <li><i class="fas fa-check-circle"></i> Course materials &amp; resources</li>
+                    <li><i class="fas fa-check-circle"></i> Official transcript download</li>
+                </ul></div>
+                <div><h4>For Instructors</h4><ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Automated attendance marking</li>
+                    <li><i class="fas fa-check-circle"></i> Digital grade book</li>
+                    <li><i class="fas fa-check-circle"></i> Course material management</li>
+                    <li><i class="fas fa-check-circle"></i> Student progress tracking</li>
+                    <li><i class="fas fa-check-circle"></i> Announcement broadcasting</li>
+                </ul></div>
+            </div>
+            <div class="grid grid-2 mt-2">
+                <div><h4>For Administrators</h4><ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Centralized user management</li>
+                    <li><i class="fas fa-check-circle"></i> Comprehensive analytics</li>
+                    <li><i class="fas fa-check-circle"></i> Automated reporting</li>
+                    <li><i class="fas fa-check-circle"></i> Course &amp; timetable management</li>
+                    <li><i class="fas fa-check-circle"></i> System monitoring dashboard</li>
+                </ul></div>
+                <div><h4>Security Features</h4><ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Role-based access control</li>
+                    <li><i class="fas fa-check-circle"></i> Data encryption</li>
+                    <li><i class="fas fa-check-circle"></i> Regular security audits</li>
+                    <li><i class="fas fa-check-circle"></i> Secure data backups</li>
+                    <li><i class="fas fa-check-circle"></i> Multi-factor authentication</li>
+                </ul></div>
+            </div>
+        </div>
+    </div>
+    <div class="info-section">
+        <div class="info-card">
+            <h3>System Statistics</h3>
+            <p class="mb-2">Smart Campus is trusted by educational institutions worldwide</p>
+            <div class="statistics-grid">
+                <div class="stat-item"><div class="number">50+</div><p>Institutions</p></div>
+                <div class="stat-item"><div class="number">100K+</div><p>Active Users</p></div>
+                <div class="stat-item"><div class="number">99.9%</div><p>Uptime</p></div>
+                <div class="stat-item"><div class="number">24/7</div><p>Support</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="info-section">
+        <div class="info-card">
+            <h3>What Our Users Say</h3>
+            <div class="grid grid-2 mt-2">
+                <div class="testimonial-card"><p>"Smart Campus has transformed how we manage our university. The attendance system alone has saved us hundreds of hours each semester."</p><div class="testimonial-author"><div class="author-avatar">IJ</div><div><h5>Dr. Ibrahim J.A</h5><p>Head of Computer Science Department</p></div></div></div>
+                <div class="testimonial-card"><p>"As a student, I love how everything is in one place. I can check my grades, submit assignments, and see my attendance all from my phone."</p><div class="testimonial-author"><div class="author-avatar">FA</div><div><h5>Faatimah Amuda</h5><p>Computer Science Student</p></div></div></div>
+            </div>
+            <div class="grid grid-2 mt-2">
+                <div class="testimonial-card"><p>"The admin panel gives me complete control over our campus operations. The analytics help us make data-driven decisions."</p><div class="testimonial-author"><div class="author-avatar">AK</div><div><h5>Mr. Akinlolu</h5><p>System Administrator</p></div></div></div>
+                <div class="testimonial-card"><p>"Grading has never been easier. The interface is intuitive, and I can provide feedback directly to students through the platform."</p><div class="testimonial-author"><div class="author-avatar">IO</div><div><h5>Mr. Ibrahim I.O</h5><p>Instructor</p></div></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="info-section">
+        <div class="info-card text-center">
+            <h3>Ready to Transform Your Campus?</h3>
+            <p class="mb-2">Join thousands of institutions already using Smart Campus.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="showModule('login')"><i class="fas fa-sign-in-alt"></i> Get Started Now</button>
+                <button class="btn btn-secondary" onclick="showModule('home')"><i class="fas fa-home"></i> Back to Home</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     LOGIN / REGISTER
+══════════════════════════════════════════════════════════════ -->
+<div id="login" class="module">
+    <div class="section-title"><h2>Welcome to Smart Campus</h2><p>Please login or register to continue</p></div>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-left">
+                <h2>Welcome Back!</h2>
+                <p class="mt-1">Access your Smart Campus account to continue your academic journey.</p>
+                <ul class="mt-2" style="list-style:none;padding-left:0">
+                    <li style="margin-bottom:15px;display:flex;align-items:center;gap:10px"><i class="fas fa-check-circle" style="color:var(--primary-color)"></i><span>Track your academic progress</span></li>
+                    <li style="margin-bottom:15px;display:flex;align-items:center;gap:10px"><i class="fas fa-check-circle" style="color:var(--primary-color)"></i><span>Access course materials</span></li>
+                    <li style="margin-bottom:15px;display:flex;align-items:center;gap:10px"><i class="fas fa-check-circle" style="color:var(--primary-color)"></i><span>View attendance records</span></li>
+                    <li style="margin-bottom:15px;display:flex;align-items:center;gap:10px"><i class="fas fa-check-circle" style="color:var(--primary-color)"></i><span>Submit assignments online</span></li>
+                    <li style="display:flex;align-items:center;gap:10px"><i class="fas fa-check-circle" style="color:var(--primary-color)"></i><span>Connect with instructors</span></li>
+                </ul>
+            </div>
+            <div class="auth-right">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                    <button class="tab-btn" onclick="switchTab('register')">Register</button>
+                </div>
+                <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+                    <div class="form-group"><label>Username</label><input type="text" id="login-identifier" class="form-control" placeholder="Enter your username" required></div>
+                    <div class="form-group"><label>Password</label><input type="password" id="login-password" class="form-control" placeholder="Enter your password" required></div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+                        <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox"> Remember me</label>
+                        <a href="#" style="color:var(--primary-color);text-decoration:none">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-sign-in-alt"></i> Login to Smart Campus</button>
+                </form>
+                <form id="register-form" class="auth-form hidden" onsubmit="handleRegister(event)">
+                    <div class="form-group"><label>Username</label><input type="text" id="register-name" class="form-control" placeholder="Choose a username" required></div>
+                    <div class="form-group"><label>Matric No / Staff ID</label><input type="text" id="register-identifier" class="form-control" placeholder="Enter your matric no or staff ID" required></div>
+                    <div class="form-group"><label>Department</label><input type="text" id="register-department" class="form-control" placeholder="e.g. Computer Science" required></div>
+                    <div class="form-group" id="register-level-group"><label>Level</label>
+                        <select id="register-level" class="form-control">
+                            <option value="100">100 Level</option><option value="200">200 Level</option>
+                            <option value="300">300 Level</option><option value="400">400 Level</option><option value="500">500 Level</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Password</label><input type="password" id="register-password" class="form-control" placeholder="Create a password" required></div>
+                    <div class="form-group"><label>Confirm Password</label><input type="password" id="confirm-password" class="form-control" placeholder="Confirm your password" required></div>
+                    <div class="form-group"><label>Register As</label>
+                        <select id="register-type" class="form-control" onchange="updateRegisterIdPlaceholder()">
+                            <option value="student">Student</option><option value="lecturer">Lecturer</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom:20px"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" required> I agree to the Terms &amp; Conditions</label></div>
+                    <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-user-plus"></i> Create Account</button>
+                </form>
+                <div class="mt-2 text-center">
+                    <p id="login-footer">Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--primary-color);cursor:pointer">Register here</a></p>
+                    <p id="register-footer" class="hidden">Already have an account? <a href="#" onclick="switchTab('login')" style="color:var(--primary-color);cursor:pointer">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     STUDENT DASHBOARD
+══════════════════════════════════════════════════════════════ -->
+<div id="student-dashboard" class="module">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-avatar">FA</div>
+                <div class="sidebar-username">Faatimah Amuda</div>
+                <div class="sidebar-subrole">FUO/24/0248 · Computer Science</div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section-label">Overview</div>
+                <button class="sidebar-item active" onclick="showStudentSub('s-dashboard',this)"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+                <button class="sidebar-item" onclick="showStudentSub('s-notifications',this)"><i class="fas fa-bell"></i> Notifications</button>
+                <div class="sidebar-section-label">Academics</div>
+                <button class="sidebar-item" onclick="showStudentSub('s-courses',this)"><i class="fas fa-book"></i> Courses &amp; Timetable</button>
+                <button class="sidebar-item" onclick="showStudentSub('s-attendance',this)"><i class="fas fa-calendar-check"></i> My Attendance</button>
+                <button class="sidebar-item" onclick="showStudentSub('s-grades',this)"><i class="fas fa-chart-line"></i> Grades &amp; Results</button>
+                <button class="sidebar-item" onclick="showStudentSub('s-transcript',this)"><i class="fas fa-file-alt"></i> Transcript</button>
+                <div class="sidebar-section-label">Account</div>
+                <button class="sidebar-item" onclick="showStudentSub('s-profile',this)"><i class="fas fa-user-cog"></i> Profile &amp; Settings</button>
+                <button class="sidebar-item" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </nav>
+        </aside>
+
+        <main class="dashboard-main">
+
+            <!-- S1: Dashboard Overview -->
+            <div id="s-dashboard" class="sub-page active">
+                <div class="page-header">
+                    <div><h2>Good morning, Faatimah! 👋</h2><p>2024/2025 First Semester · Week 11</p></div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card"><i class="fas fa-calendar-check"></i><h3>Attendance Rate</h3><div class="stat-value" id="student-stat-attendance">84%</div><p class="stat-sub">Above 70% requirement</p></div>
+                    <div class="stat-card accent-green"><i class="fas fa-chart-line"></i><h3>Current GPA</h3><div class="stat-value" id="student-stat-gpa">3.6</div><p class="stat-sub">Top 20% of class</p></div>
+                    <div class="stat-card"><i class="fas fa-book"></i><h3>Active Courses</h3><div class="stat-value" id="student-stat-courses">6</div><p class="stat-sub">2024/25 Semester 1</p></div>
+                    <div class="stat-card accent-yellow"><i class="fas fa-clock"></i><h3>Pending Tasks</h3><div class="stat-value">3</div><p class="stat-sub">Assignments due soon</p></div>
+                </div>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 style="margin-bottom:16px"><i class="fas fa-calendar-day" style="color:var(--primary-color);margin-right:8px"></i>Today's Classes</h3>
+                        <div class="schedule-slot"><div class="slot-time">08:00</div><div class="slot-bar" style="background:#3498db"></div><div><div class="slot-title">Foundation of Sequential Programming</div><div class="slot-meta">CSC207 · Mr. Akinlolu · Hall B</div></div></div>
+                        <div class="schedule-slot"><div class="slot-time">11:00</div><div class="slot-bar" style="background:#2ecc71"></div><div><div class="slot-title">Mathematics</div><div class="slot-meta">MTH203 · Dr. Ibrahim J.A. · LT 1</div></div></div>
+                        <div class="schedule-slot"><div class="slot-time">14:00</div><div class="slot-bar" style="background:#9b59b6"></div><div><div class="slot-title">Web Development</div><div class="slot-meta">CSC203 · Dr. Ogirima · Lab 3</div></div></div>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-bottom:16px"><i class="fas fa-bell" style="color:var(--primary-color);margin-right:8px"></i>Recent Notifications</h3>
+                        <div class="notif-item"><div class="notif-dot"></div><div class="notif-body"><div class="notif-title">CSC207 Assignment Due</div><div class="notif-desc">Submit before Friday 11:59 PM</div><div class="notif-time">2 hours ago</div></div></div>
+                        <div class="notif-item"><div class="notif-dot"></div><div class="notif-body"><div class="notif-title">Mid-Semester Results Released</div><div class="notif-desc">Check your grade portal now</div><div class="notif-time">Yesterday</div></div></div>
+                        <div class="notif-item"><div class="notif-dot read"></div><div class="notif-body"><div class="notif-title">Campus Closed — Public Holiday</div><div class="notif-desc">April 25, 2026</div><div class="notif-time">3 days ago</div></div></div>
+                        <button class="btn btn-outline btn-sm mt-1" onclick="showStudentSub('s-notifications',null)">View all notifications</button>
+                    </div>
+                </div>
+                <div class="grid grid-2 mt-2">
+                    <div class="card">
+                        <h3 style="margin-bottom:16px"><i class="fas fa-chart-bar" style="color:var(--primary-color);margin-right:8px"></i>Attendance Summary</h3>
+                        <div style="margin-bottom:12px">
+                            <div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:4px"><span class="font-mono" style="color:var(--primary-color)">CSC207</span><span>87.5%</span></div>
+                            <div class="progress-bar"><div class="progress-fill green" style="width:87.5%"></div></div>
+                        </div>
+                        <div style="margin-bottom:12px">
+                            <div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:4px"><span class="font-mono" style="color:var(--primary-color)">MTH203</span><span style="color:var(--accent-color)">68.8%</span></div>
+                            <div class="progress-bar"><div class="progress-fill red" style="width:68.8%"></div></div>
+                        </div>
+                        <div style="margin-bottom:12px">
+                            <div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:4px"><span class="font-mono" style="color:var(--primary-color)">CSC203</span><span>83.3%</span></div>
+                            <div class="progress-bar"><div class="progress-fill green" style="width:83.3%"></div></div>
+                        </div>
+                        <button class="btn btn-outline btn-sm" onclick="showStudentSub('s-attendance',null)">Full attendance report →</button>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-bottom:16px"><i class="fas fa-graduation-cap" style="color:var(--primary-color);margin-right:8px"></i>Grade Overview</h3>
+                        <table style="width:100%;font-size:0.9rem">
+                            <tr style="border-bottom:1px solid #eee"><td style="padding:8px 0;font-family:monospace;color:var(--primary-color)">CSC207</td><td>84/100</td><td><span class="badge badge-green">A</span></td></tr>
+                            <tr style="border-bottom:1px solid #eee"><td style="padding:8px 0;font-family:monospace;color:var(--primary-color)">MTH203</td><td>73/100</td><td><span class="badge badge-blue">B</span></td></tr>
+                            <tr style="border-bottom:1px solid #eee"><td style="padding:8px 0;font-family:monospace;color:var(--primary-color)">CSC203</td><td>84/100</td><td><span class="badge badge-green">A</span></td></tr>
+                        </table>
+                        <button class="btn btn-outline btn-sm mt-1" onclick="showStudentSub('s-grades',null)">View full results →</button>
+                    </div>
+                </div>
+                <div class="card mt-2">
+                    <h3 style="margin-bottom:16px"><i class="fas fa-clock" style="color:var(--warning-color);margin-right:8px"></i>Upcoming Deadlines</h3>
+                    <div style="display:flex;align-items:center;padding:15px;border:1px solid #eee;border-radius:8px;margin-bottom:10px">
+                        <div style="background:var(--light-color);padding:10px;border-radius:8px;text-align:center;margin-right:15px;min-width:70px"><div style="font-size:1.5rem;font-weight:bold;color:var(--secondary-color)">25</div><div style="font-size:0.9rem;color:#7f8c8d">APR</div></div>
+                        <div style="flex-grow:1"><h4 style="margin-bottom:5px">Mathematics Assignment</h4><p style="color:#7f8c8d;font-size:0.9rem">Due: April 25, 2026 · Course: MTH203</p></div>
+                        <button class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                    <div style="display:flex;align-items:center;padding:15px;border:1px solid #eee;border-radius:8px">
+                        <div style="background:var(--light-color);padding:10px;border-radius:8px;text-align:center;margin-right:15px;min-width:70px"><div style="font-size:1.5rem;font-weight:bold;color:var(--secondary-color)">30</div><div style="font-size:0.9rem;color:#7f8c8d">APR</div></div>
+                        <div style="flex-grow:1"><h4 style="margin-bottom:5px">Foundation of Sequential Programming Project</h4><p style="color:#7f8c8d;font-size:0.9rem">Due: April 30, 2026 · Course: CSC207</p></div>
+                        <button class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- S2: Notifications -->
+            <div id="s-notifications" class="sub-page">
+                <div class="page-header"><div><h2>Notifications</h2><p>2 unread notifications</p></div><button class="btn btn-outline btn-sm">Mark all as read</button></div>
+                <div class="card">
+                    <div class="notif-item"><div class="notif-dot"></div><div class="notif-body"><div class="notif-title">📢 CSC207 Assignment Due <span class="notif-tag">Academic</span></div><div class="notif-desc">Your Foundation of Sequential Programming assignment must be submitted by Friday April 25 at 11:59 PM.</div><div class="notif-time">2 hours ago</div></div></div>
+                    <div class="notif-item"><div class="notif-dot"></div><div class="notif-body"><div class="notif-title">📋 Mid-Semester Results Released <span class="notif-tag">Results</span></div><div class="notif-desc">Your results for 2024/25 Semester 1 mid-semester exams are now available in the grades portal.</div><div class="notif-time">Yesterday</div></div></div>
+                    <div class="notif-item"><div class="notif-dot read"></div><div class="notif-body"><div class="notif-title">🗓️ Campus Closed — Public Holiday <span class="notif-tag">Admin</span></div><div class="notif-desc">The university will be closed on Friday April 25, 2026 in observance of the public holiday.</div><div class="notif-time">3 days ago</div></div></div>
+                    <div class="notif-item"><div class="notif-dot read"></div><div class="notif-body"><div class="notif-title">📣 Semester Registration Open <span class="notif-tag">Admin</span></div><div class="notif-desc">Registration for 2024/25 Semester 2 is now open. Deadline is May 5. Log into the portal to complete.</div><div class="notif-time">Last week</div></div></div>
+                    <div class="notif-item"><div class="notif-dot read"></div><div class="notif-body"><div class="notif-title">⚠️ Attendance Warning — MTH203 <span class="notif-tag" style="background:var(--warning-color)">Attendance</span></div><div class="notif-desc">Your attendance in MTH203 is 68.8%, which is below the required 70% minimum. Please attend upcoming classes.</div><div class="notif-time">2 weeks ago</div></div></div>
+                </div>
+            </div>
+
+            <!-- S3: Courses & Timetable -->
+            <div id="s-courses" class="sub-page">
+                <div class="page-header"><div><h2>Courses &amp; Timetable</h2><p>2024/2025 Semester 1 · 6 courses enrolled</p></div>
+                    <div class="flex gap-2">
+                        <button class="btn btn-outline btn-sm" id="list-view-btn" onclick="setCourseView('list')">List View</button>
+                        <button class="btn btn-primary btn-sm" id="timetable-view-btn" onclick="setCourseView('timetable')">Weekly Timetable</button>
+                    </div>
+                </div>
+                <div id="course-view-area">
+                    <div class="grid grid-3" id="student-courses-grid">
+                        <div class="course-card"><h4>Foundation of Sequential Programming</h4><p class="course-meta"><i class="fas fa-code"></i> CSC207 · Mr. Akinlolu</p><div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div><div style="display:flex;justify-content:space-between;font-size:0.85rem;color:#7f8c8d;margin-bottom:12px"><span>Progress</span><span>95%</span></div><button class="btn btn-primary btn-sm" onclick="showModule('course-detail')"><i class="fas fa-sign-in-alt"></i> Enter Course</button></div>
+                        <div class="course-card"><h4>Mathematics</h4><p class="course-meta"><i class="fas fa-calculator"></i> MTH203 · Dr. Ibrahim J.A.</p><div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div><div style="display:flex;justify-content:space-between;font-size:0.85rem;color:#7f8c8d;margin-bottom:12px"><span>Progress</span><span>60%</span></div><button class="btn btn-primary btn-sm"><i class="fas fa-sign-in-alt"></i> Enter Course</button></div>
+                        <div class="course-card"><h4>Web Development</h4><p class="course-meta"><i class="fas fa-globe"></i> CSC203 · Dr. Ogirima</p><div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div><div style="display:flex;justify-content:space-between;font-size:0.85rem;color:#7f8c8d;margin-bottom:12px"><span>Progress</span><span>85%</span></div><button class="btn btn-primary btn-sm"><i class="fas fa-sign-in-alt"></i> Enter Course</button></div>
+                        <div class="course-card"><h4>Technical Writing</h4><p class="course-meta"><i class="fas fa-pen"></i> ENG210 · Mr. Chidi</p><div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div><div style="display:flex;justify-content:space-between;font-size:0.85rem;color:#7f8c8d;margin-bottom:12px"><span>Progress</span><span>70%</span></div><button class="btn btn-primary btn-sm"><i class="fas fa-sign-in-alt"></i> Enter Course</button></div>
+                        <div class="course-card"><h4>Physics</h4><p class="course-meta"><i class="fas fa-atom"></i> PHY201 · Prof. Bello</p><div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div><div style="display:flex;justify-content:space-between;font-size:0.85rem;color:#7f8c8d;margin-bottom:12px"><span>Progress</span><span>55%</span></div><button class="btn btn-primary btn-sm"><i class="fas fa-sign-in-alt"></i> Enter Course</button></div>
+                        <div class="course-card"><h4>Statistics</h4><p class="course-meta"><i class="fas fa-chart-pie"></i> STA201 · Dr. Alabi</p><div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div><div style="display:flex;justify-content:space-between;font-size:0.85rem;color:#7f8c8d;margin-bottom:12px"><span>Progress</span><span>90%</span></div><button class="btn btn-primary btn-sm"><i class="fas fa-sign-in-alt"></i> Enter Course</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- S4: Attendance -->
+            <div id="s-attendance" class="sub-page">
+                <div class="page-header"><div><h2>My Attendance</h2><p>2024/2025 Semester 1</p></div></div>
+                <div class="stats-grid">
+                    <div class="stat-card"><i class="fas fa-percentage"></i><h3>Overall Rate</h3><div class="stat-value">84%</div><p class="stat-sub">Across all courses</p></div>
+                    <div class="stat-card accent-green"><i class="fas fa-check-circle"></i><h3>Classes Attended</h3><div class="stat-value">64</div><p class="stat-sub">Out of 78 total</p></div>
+                    <div class="stat-card accent-red"><i class="fas fa-times-circle"></i><h3>Absent</h3><div class="stat-value">14</div><p class="stat-sub">Total missed</p></div>
+                    <div class="stat-card accent-yellow"><i class="fas fa-exclamation-triangle"></i><h3>At-Risk Courses</h3><div class="stat-value">1</div><p class="stat-sub">Below 70% threshold</p></div>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Code</th><th>Course</th><th>Attended</th><th>Total</th><th>Absent</th><th>Rate</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-mono text-primary">CSC207</td><td>Foundation of Sequential Programming</td><td>14</td><td>16</td><td>2</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:80px"><div class="progress-fill green" style="width:87.5%"></div></div><span>87.5%</span></div></td><td><span class="badge badge-green">Good</span></td></tr>
+                            <tr><td class="font-mono text-primary">MTH203</td><td>Mathematics</td><td>11</td><td>16</td><td>5</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:80px"><div class="progress-fill red" style="width:68.8%"></div></div><span style="color:var(--accent-color)">68.8%</span></div></td><td><span class="badge badge-red">At Risk</span></td></tr>
+                            <tr><td class="font-mono text-primary">CSC203</td><td>Web Development</td><td>10</td><td>12</td><td>2</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:80px"><div class="progress-fill green" style="width:83.3%"></div></div><span>83.3%</span></div></td><td><span class="badge badge-green">Good</span></td></tr>
+                            <tr><td class="font-mono text-primary">ENG210</td><td>Technical Writing</td><td>9</td><td>10</td><td>1</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:80px"><div class="progress-fill green" style="width:90%"></div></div><span>90%</span></div></td><td><span class="badge badge-green">Good</span></td></tr>
+                            <tr><td class="font-mono text-primary">PHY201</td><td>Physics</td><td>8</td><td>10</td><td>2</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:80px"><div class="progress-fill yellow" style="width:80%"></div></div><span>80%</span></div></td><td><span class="badge badge-yellow">Satisfactory</span></td></tr>
+                            <tr><td class="font-mono text-primary">STA201</td><td>Statistics</td><td>9</td><td>10</td><td>1</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:80px"><div class="progress-fill green" style="width:90%"></div></div><span>90%</span></div></td><td><span class="badge badge-green">Good</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card mt-2" style="border-left:4px solid var(--warning-color)">
+                    <h4 style="color:var(--warning-color);margin-bottom:8px"><i class="fas fa-exclamation-triangle"></i> Attendance Warning — MTH203</h4>
+                    <p>Your attendance in <strong>Mathematics (MTH203)</strong> is 68.8%, which is below the required 70% minimum. You need to attend at least <strong>2 more classes</strong> to meet the threshold and be eligible for the final examination.</p>
+                </div>
+            </div>
+
+            <!-- S5: Grades & Results -->
+            <div id="s-grades" class="sub-page">
+                <div class="page-header"><div><h2>Grades &amp; Results</h2><p>2024/2025 Semester 1</p></div>
+                    <button class="btn btn-outline btn-sm" onclick="showStudentSub('s-transcript',null)"><i class="fas fa-file-download"></i> Download Transcript</button>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card accent-green"><i class="fas fa-star"></i><h3>Semester GPA</h3><div class="stat-value">3.60</div><p class="stat-sub">2024/25 Semester 1</p></div>
+                    <div class="stat-card"><i class="fas fa-chart-line"></i><h3>Cumulative GPA</h3><div class="stat-value">3.52</div><p class="stat-sub">Overall performance</p></div>
+                    <div class="stat-card"><i class="fas fa-award"></i><h3>Distinctions</h3><div class="stat-value">3</div><p class="stat-sub">Courses with A grade</p></div>
+                    <div class="stat-card"><i class="fas fa-book"></i><h3>Credits Earned</h3><div class="stat-value">14</div><p class="stat-sub">This semester</p></div>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Code</th><th>Course</th><th>Units</th><th>CA /40</th><th>Exam /60</th><th>Total</th><th>Grade</th><th>Grade Points</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-mono text-primary">CSC207</td><td>Foundation of Sequential Programming</td><td>3</td><td>32</td><td>52</td><td><strong>84</strong></td><td><span class="badge badge-green">A</span></td><td>15</td></tr>
+                            <tr><td class="font-mono text-primary">MTH203</td><td>Mathematics</td><td>3</td><td>28</td><td>45</td><td><strong>73</strong></td><td><span class="badge badge-blue">B</span></td><td>12</td></tr>
+                            <tr><td class="font-mono text-primary">CSC203</td><td>Web Development</td><td>3</td><td>35</td><td>49</td><td><strong>84</strong></td><td><span class="badge badge-green">A</span></td><td>15</td></tr>
+                            <tr><td class="font-mono text-primary">ENG210</td><td>Technical Writing</td><td>2</td><td>33</td><td>47</td><td><strong>80</strong></td><td><span class="badge badge-green">A</span></td><td>10</td></tr>
+                            <tr><td class="font-mono text-primary">PHY201</td><td>Physics</td><td>3</td><td>24</td><td>40</td><td><strong>64</strong></td><td><span class="badge badge-yellow">C</span></td><td>9</td></tr>
+                            <tr><td class="font-mono text-primary">STA201</td><td>Statistics</td><td>2</td><td>30</td><td>48</td><td><strong>78</strong></td><td><span class="badge badge-blue">B</span></td><td>8</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- S6: Transcript -->
+            <div id="s-transcript" class="sub-page">
+                <div class="page-header"><div><h2>Official Transcript</h2><p>Federal University Oye-Ekiti — Academic Record</p></div>
+                    <div class="flex gap-2">
+                        <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Download PDF</button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-envelope"></i> Request Official Copy</button>
+                    </div>
+                </div>
+                <div class="report-card">
+                    <div class="report-header">
+                        <h3 style="margin-bottom:4px;font-size:1.4rem">Federal University Oye-Ekiti</h3>
+                        <p style="opacity:0.8">Official Academic Transcript — Strictly Confidential</p>
+                    </div>
+                    <div class="report-body">
+                        <div class="grid grid-2 mb-2">
+                            <div>
+                                <div class="report-row"><span class="report-key">Student Name</span><span class="report-val">Faatimah Amuda</span></div>
+                                <div class="report-row"><span class="report-key">Matric Number</span><span class="report-val">FUO/24/0248</span></div>
+                                <div class="report-row"><span class="report-key">Department</span><span class="report-val">Computer Science</span></div>
+                                <div class="report-row"><span class="report-key">Faculty</span><span class="report-val">Computing &amp; Applied Sciences</span></div>
+                            </div>
+                            <div>
+                                <div class="report-row"><span class="report-key">Level</span><span class="report-val">200 Level</span></div>
+                                <div class="report-row"><span class="report-key">Mode of Entry</span><span class="report-val">UTME</span></div>
+                                <div class="report-row"><span class="report-key">Date of Admission</span><span class="report-val">September 2024</span></div>
+                                <div class="report-row"><span class="report-key">Cumulative GPA</span><span class="report-val" style="color:var(--success-color)">3.52 / 5.0</span></div>
+                            </div>
+                        </div>
+                        <h4 style="margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--light-color)">Academic History</h4>
+                        <div style="margin-bottom:16px">
+                            <div style="display:flex;justify-content:space-between;font-size:0.9rem;font-weight:600;color:var(--secondary-color);margin-bottom:8px;padding:8px;background:var(--light-color);border-radius:6px">
+                                <span>2024/25 Semester 1 (Current)</span><span>GPA: 3.60 · 16 credits</span>
+                            </div>
+                            <table style="width:100%;font-size:0.88rem">
+                                <tr style="border-bottom:1px solid #eee"><td style="padding:7px 0;font-family:monospace;color:var(--primary-color)">CSC207</td><td>Foundation of Sequential Programming</td><td>3 units</td><td><span class="badge badge-green">A</span></td></tr>
+                                <tr style="border-bottom:1px solid #eee"><td style="padding:7px 0;font-family:monospace;color:var(--primary-color)">MTH203</td><td>Mathematics</td><td>3 units</td><td><span class="badge badge-blue">B</span></td></tr>
+                                <tr style="border-bottom:1px solid #eee"><td style="padding:7px 0;font-family:monospace;color:var(--primary-color)">CSC203</td><td>Web Development</td><td>3 units</td><td><span class="badge badge-green">A</span></td></tr>
+                                <tr><td style="padding:7px 0;font-family:monospace;color:var(--primary-color)">ENG210</td><td>Technical Writing</td><td>2 units</td><td><span class="badge badge-green">A</span></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- S7: Profile & Settings -->
+            <div id="s-profile" class="sub-page">
+                <div class="page-header"><div><h2>Profile &amp; Settings</h2><p>Manage your account information</p></div><button class="btn btn-primary btn-sm"><i class="fas fa-save"></i> Save Changes</button></div>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 style="margin-bottom:20px">Personal Information</h3>
+                        <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+                            <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--primary-color),#2980b9);display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;color:white;flex-shrink:0">FA</div>
+                            <div><h4>Faatimah Amuda</h4><p style="color:#7f8c8d;font-size:0.9rem">FUO/24/0248 · 200 Level Computer Science</p><button class="btn btn-outline btn-sm mt-1">Change Photo</button></div>
+                        </div>
+                        <div class="form-group"><label>Full Name</label><input class="form-control" value="Faatimah Amuda"></div>
+                        <div class="form-group"><label>Matric Number</label><input class="form-control" value="FUO/24/0248" readonly style="background:#f5f5f5"></div>
+                        <div class="form-group"><label>Email Address</label><input class="form-control" type="email" value="famuda@fuo.edu.ng"></div>
+                        <div class="form-group"><label>Phone Number</label><input class="form-control" placeholder="+234 ..."></div>
+                    </div>
+                    <div>
+                        <div class="card mb-1">
+                            <h3 style="margin-bottom:20px">Security</h3>
+                            <div class="form-group"><label>Current Password</label><input class="form-control" type="password" placeholder="••••••••"></div>
+                            <div class="form-group"><label>New Password</label><input class="form-control" type="password" placeholder="••••••••"></div>
+                            <div class="form-group"><label>Confirm New Password</label><input class="form-control" type="password" placeholder="••••••••"></div>
+                            <button class="btn btn-secondary btn-sm">Update Password</button>
+                        </div>
+                        <div class="card">
+                            <h3 style="margin-bottom:16px">Notification Preferences</h3>
+                            <div class="toggle-row"><div class="toggle-label"><h5>Email Notifications</h5><p>Receive updates via email</p></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                            <div class="toggle-row"><div class="toggle-label"><h5>Grade Alerts</h5><p>Notify when grades are released</p></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                            <div class="toggle-row"><div class="toggle-label"><h5>Attendance Alerts</h5><p>Warn when attendance drops</p></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                            <div class="toggle-row"><div class="toggle-label"><h5>Weekly Digest</h5><p>Summary every Sunday morning</p></div><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     COURSE DETAIL
+══════════════════════════════════════════════════════════════ -->
+<div id="course-detail" class="module">
+    <a class="back-to-home" onclick="showModule('student-dashboard')"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    <div class="course-header-banner">
+        <div class="course-code">CSC207 · 3 Units</div>
+        <h3>Foundation of Sequential Programming</h3>
+        <div class="course-meta"><i class="fas fa-user"></i> Mr. Akinlolu &nbsp;·&nbsp; <i class="fas fa-map-marker-alt"></i> Hall B &nbsp;·&nbsp; <i class="fas fa-clock"></i> Mon/Wed 08:00–09:30</div>
+    </div>
+    <div class="course-tabs">
+        <button class="course-tab-btn active" onclick="switchCourseTab('tab-overview')"><i class="fas fa-home"></i> Overview</button>
+        <button class="course-tab-btn" onclick="switchCourseTab('tab-materials')"><i class="fas fa-file-alt"></i> Materials</button>
+        <button class="course-tab-btn" onclick="switchCourseTab('tab-assessments')"><i class="fas fa-tasks"></i> Assessments</button>
+        <button class="course-tab-btn" onclick="switchCourseTab('tab-attendance')"><i class="fas fa-calendar-check"></i> Attendance</button>
+    </div>
+    <div class="tab-content">
+        <div id="tab-overview" class="tab-pane active">
+            <div class="stats-grid">
+                <div class="stat-card"><i class="fas fa-calendar-check"></i><h3>Attendance</h3><div class="stat-value">87.5%</div><p class="stat-sub">14 of 16 classes</p></div>
+                <div class="stat-card accent-green"><i class="fas fa-star"></i><h3>Current Score</h3><div class="stat-value">84</div><p class="stat-sub">Grade: A</p></div>
+            </div>
+            <div class="grid grid-2 mt-2">
+                <div><h4 style="margin-bottom:12px">Course Description</h4><p style="color:#7f8c8d;line-height:1.7">This course introduces students to the fundamentals of sequential programming using modern programming languages. Topics include variables, data types, control structures, functions, arrays, and basic algorithms.</p></div>
+                <div><h4 style="margin-bottom:12px">Upcoming Deadlines</h4>
+                    <div style="padding:12px;background:var(--light-color);border-radius:8px;margin-bottom:8px"><strong>Assignment 1</strong> — Due April 25<br><span style="font-size:0.85rem;color:#7f8c8d">Problem set on sorting algorithms</span></div>
+                    <div style="padding:12px;background:var(--light-color);border-radius:8px"><strong>Project Submission</strong> — Due April 30<br><span style="font-size:0.85rem;color:#7f8c8d">Mini-project: simple student grader</span></div>
+                </div>
+            </div>
+        </div>
+        <div id="tab-materials" class="tab-pane">
+            <h4 style="margin-bottom:16px">Course Materials</h4>
+            <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #eee;border-radius:8px"><span style="font-size:1.4rem">📄</span><div style="flex:1"><strong>Week 1 — Intro to Programming</strong><br><span style="font-size:0.85rem;color:#7f8c8d">PDF · 2.1 MB</span></div><button class="btn btn-outline btn-sm"><i class="fas fa-download"></i></button></div>
+                <div style="display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #eee;border-radius:8px"><span style="font-size:1.4rem">📄</span><div style="flex:1"><strong>Week 2 — Variables &amp; Data Types</strong><br><span style="font-size:0.85rem;color:#7f8c8d">PDF · 1.8 MB</span></div><button class="btn btn-outline btn-sm"><i class="fas fa-download"></i></button></div>
+                <div style="display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #eee;border-radius:8px"><span style="font-size:1.4rem">📄</span><div style="flex:1"><strong>Week 3 — Control Flow</strong><br><span style="font-size:0.85rem;color:#7f8c8d">PDF · 2.4 MB</span></div><button class="btn btn-outline btn-sm"><i class="fas fa-download"></i></button></div>
+                <div style="display:flex;align-items:center;gap:12px;padding:14px;background:#fff8e1;border:1px solid #fde68a;border-radius:8px"><span style="font-size:1.4rem">📋</span><div style="flex:1"><strong>Assignment 1 — Due April 25</strong><br><span style="font-size:0.85rem;color:#7f8c8d">Problem set · Submit via portal</span></div><button class="btn btn-primary btn-sm">Submit</button></div>
+            </div>
+        </div>
+        <div id="tab-assessments" class="tab-pane">
+            <h4 style="margin-bottom:16px">Assessment Breakdown</h4>
+            <div style="padding:14px;display:flex;justify-content:space-between;border-bottom:1px solid #eee;font-size:0.95rem"><span style="color:#7f8c8d">Continuous Assessment</span><div style="display:flex;gap:16px"><span class="font-mono">32 / 40</span><span style="color:var(--success-color);font-weight:600">80%</span></div></div>
+            <div style="padding:14px;display:flex;justify-content:space-between;border-bottom:1px solid #eee;font-size:0.95rem"><span style="color:#7f8c8d">Mid-Semester Exam</span><div style="display:flex;gap:16px"><span class="font-mono">28 / 40</span><span style="color:var(--warning-color);font-weight:600">70%</span></div></div>
+            <div style="padding:14px;display:flex;justify-content:space-between;border-bottom:1px solid #eee;font-size:0.95rem"><span style="color:#7f8c8d">Final Exam (Upcoming)</span><div><span style="color:#bdc3c7">Not yet held</span></div></div>
+            <div style="padding:14px;display:flex;justify-content:space-between;font-size:1rem;font-weight:700"><span>Current Total</span><span style="color:var(--primary-color)">84 / 100 &nbsp;<span class="badge badge-green">A</span></span></div>
+        </div>
+        <div id="tab-attendance" class="tab-pane">
+            <h4 style="margin-bottom:16px">Attendance Record — CSC207</h4>
+            <div class="stats-grid">
+                <div class="stat-card accent-green"><i class="fas fa-check-circle"></i><h3>Attended</h3><div class="stat-value">14</div></div>
+                <div class="stat-card accent-red"><i class="fas fa-times-circle"></i><h3>Absent</h3><div class="stat-value">2</div></div>
+                <div class="stat-card"><i class="fas fa-percent"></i><h3>Rate</h3><div class="stat-value">87.5%</div></div>
+            </div>
+            <div class="table-wrap mt-2">
+                <table class="data-table">
+                    <thead><tr><th>#</th><th>Date</th><th>Topic</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Mon, Jan 13</td><td>Introduction to Programming</td><td><span class="badge badge-green">Present</span></td></tr>
+                        <tr><td>2</td><td>Wed, Jan 15</td><td>Variables &amp; Data Types</td><td><span class="badge badge-green">Present</span></td></tr>
+                        <tr><td>3</td><td>Mon, Jan 20</td><td>Control Structures</td><td><span class="badge badge-red">Absent</span></td></tr>
+                        <tr><td>4</td><td>Wed, Jan 22</td><td>Functions</td><td><span class="badge badge-green">Present</span></td></tr>
+                        <tr><td>5</td><td>Mon, Jan 27</td><td>Arrays</td><td><span class="badge badge-green">Present</span></td></tr>
+                        <tr><td>6</td><td>Wed, Jan 29</td><td>Sorting Algorithms</td><td><span class="badge badge-red">Absent</span></td></tr>
+                        <tr><td>7–16</td><td>Feb–Mar</td><td>Remaining classes</td><td><span class="badge badge-green">Present (all)</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ATTENDANCE (standalone module — backend-connected)
+══════════════════════════════════════════════════════════════ -->
+<div id="attendance" class="module">
+    <a class="back-to-home" onclick="showModule('instructor-dashboard')"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    <div class="section-title"><h2>Attendance Management</h2><p>Mark and track student attendance for your courses</p></div>
+
+    <div class="attendance-filters">
+        <div class="grid grid-3">
+            <div class="form-group" style="margin-bottom:0"><label>Select Course</label>
+                <select id="attendance-course" class="form-control"><option>CSC207 - Foundation of Sequential Programming</option><option>MTH203 - Mathematics</option><option>CSC203 - Web Development</option></select>
+            </div>
+            <div class="form-group" style="margin-bottom:0"><label>Date</label><input type="date" id="attendance-date" class="form-control" value="2026-03-14"></div>
+            <div class="form-group" style="margin-bottom:0"><label>Session</label>
+                <select class="form-control"><option>Morning Session (8:00 AM)</option><option>Afternoon Session (1:00 PM)</option><option>Evening Session (4:00 PM)</option></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="attendance-summary">
+        <div class="summary-card"><h4>Total Students</h4><div class="value">45</div></div>
+        <div class="summary-card"><h4>Present</h4><div class="value" style="color:var(--success-color)">38</div></div>
+        <div class="summary-card"><h4>Absent</h4><div class="value" style="color:var(--accent-color)">5</div></div>
+        <div class="summary-card"><h4>Late</h4><div class="value" style="color:var(--warning-color)">2</div></div>
+        <div class="summary-card"><h4>Attendance %</h4><div class="value" style="color:var(--primary-color)">84%</div></div>
+    </div>
+
+    <div class="attendance-marking-grid">
+        <div class="attendance-session-card">
+            <div class="session-header">
+                <div class="session-title"><h4>Morning Session</h4><p>8:00 AM – 10:00 AM</p></div>
+                <div class="session-actions">
+                    <button class="btn btn-primary btn-sm" onclick="markAllPresent('morning')"><i class="fas fa-check-double"></i> All Present</button>
+                    <button class="btn btn-secondary btn-sm" onclick="saveAttendance()"><i class="fas fa-save"></i> Save</button>
+                </div>
+            </div>
+            <div class="student-list">
+                <div class="student-attendance-item"><div class="student-info"><div class="student-avatar">FA</div><div><h5 style="margin:0">Faatimah Amuda</h5><p style="margin:0;color:#7f8c8d;font-size:0.8rem">FUO/24/0248</p></div></div><div class="attendance-controls"><button class="attendance-btn btn-present active" onclick="setAttendance(this,'present')">P</button><button class="attendance-btn btn-absent" onclick="setAttendance(this,'absent')">A</button><button class="attendance-btn btn-late" onclick="setAttendance(this,'late')">L</button></div></div>
+                <div class="student-attendance-item"><div class="student-info"><div class="student-avatar">FB</div><div><h5 style="margin:0">Firdaous Balogun</h5><p style="margin:0;color:#7f8c8d;font-size:0.8rem">FUO/24/0294</p></div></div><div class="attendance-controls"><button class="attendance-btn btn-present" onclick="setAttendance(this,'present')">P</button><button class="attendance-btn btn-absent active" onclick="setAttendance(this,'absent')">A</button><button class="attendance-btn btn-late" onclick="setAttendance(this,'late')">L</button></div></div>
+                <div class="student-attendance-item"><div class="student-info"><div class="student-avatar">AM</div><div><h5 style="margin:0">Abdullahi Musa</h5><p style="margin:0;color:#7f8c8d;font-size:0.8rem">FUO/24/0315</p></div></div><div class="attendance-controls"><button class="attendance-btn btn-present active" onclick="setAttendance(this,'present')">P</button><button class="attendance-btn btn-absent" onclick="setAttendance(this,'absent')">A</button><button class="attendance-btn btn-late" onclick="setAttendance(this,'late')">L</button></div></div>
+                <div class="student-attendance-item"><div class="student-info"><div class="student-avatar">KT</div><div><h5 style="margin:0">Khadijat Tunde</h5><p style="margin:0;color:#7f8c8d;font-size:0.8rem">FUO/24/0388</p></div></div><div class="attendance-controls"><button class="attendance-btn btn-present" onclick="setAttendance(this,'present')">P</button><button class="attendance-btn btn-absent" onclick="setAttendance(this,'absent')">A</button><button class="attendance-btn btn-late active" onclick="setAttendance(this,'late')">L</button></div></div>
+            </div>
+        </div>
+        <div class="attendance-session-card">
+            <div class="session-header">
+                <div class="session-title"><h4>Afternoon Session</h4><p>1:00 PM – 3:00 PM</p></div>
+                <div class="session-actions">
+                    <button class="btn btn-primary btn-sm" onclick="markAllPresent('afternoon')"><i class="fas fa-check-double"></i> All Present</button>
+                    <button class="btn btn-secondary btn-sm" onclick="saveAttendance()"><i class="fas fa-save"></i> Save</button>
+                </div>
+            </div>
+            <div class="student-list">
+                <div class="student-attendance-item"><div class="student-info"><div class="student-avatar">FP</div><div><h5 style="margin:0">Fathia Popoola</h5><p style="margin:0;color:#7f8c8d;font-size:0.8rem">FUO/24/0602</p></div></div><div class="attendance-controls"><button class="attendance-btn btn-present" onclick="setAttendance(this,'present')">P</button><button class="attendance-btn btn-absent" onclick="setAttendance(this,'absent')">A</button><button class="attendance-btn btn-late active" onclick="setAttendance(this,'late')">L</button></div></div>
+                <div class="student-attendance-item"><div class="student-info"><div class="student-avatar">OA</div><div><h5 style="margin:0">Olamide Adeyemi</h5><p style="margin:0;color:#7f8c8d;font-size:0.8rem">FUO/24/0441</p></div></div><div class="attendance-controls"><button class="attendance-btn btn-present active" onclick="setAttendance(this,'present')">P</button><button class="attendance-btn btn-absent" onclick="setAttendance(this,'absent')">A</button><button class="attendance-btn btn-late" onclick="setAttendance(this,'late')">L</button></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-2">
+        <div class="attendance-bulk-actions">
+            <button class="btn btn-secondary"><i class="fas fa-download"></i> Export Report</button>
+            <button class="btn btn-secondary"><i class="fas fa-history"></i> View History</button>
+            <button class="btn btn-primary" onclick="saveAttendance()"><i class="fas fa-save"></i> Save All Sessions</button>
+        </div>
+    </div>
+    <div class="card mt-2">
+        <h3 style="margin-bottom:16px">Attendance Statistics</h3>
+        <div class="grid grid-3 mt-1">
+            <div><h4 style="margin-bottom:8px">Overall Attendance Rate</h4><div class="progress-bar"><div class="progress-fill green" style="width:84%"></div></div><p style="margin-top:5px;font-size:0.9rem;color:#7f8c8d">84% across all courses</p></div>
+            <div><h4 style="margin-bottom:8px">Best Attendance Course</h4><p style="color:var(--primary-color);font-weight:600">ENG210 — Technical Writing</p><p style="font-size:0.9rem;color:#7f8c8d">90% attendance rate</p></div>
+            <div><h4 style="margin-bottom:8px">At-Risk Students</h4><p style="color:var(--accent-color);font-weight:600">3 students below 70%</p><p style="font-size:0.9rem;color:#7f8c8d">Notifications sent automatically</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     LECTURER DASHBOARD
+══════════════════════════════════════════════════════════════ -->
+<div id="instructor-dashboard" class="module">
+    <div class="dashboard-container">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-avatar" style="background:linear-gradient(135deg,#0f7a5a,#1D9E75)">AK</div>
+                <div class="sidebar-username" id="lecturer-name-display">Mr. Akinlolu</div>
+                <div class="sidebar-subrole">Dept. of Computer Science</div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section-label">Overview</div>
+                <button class="sidebar-item active" onclick="showLecSub('l-dashboard',this)"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+                <button class="sidebar-item" onclick="showLecSub('l-notifications',this)"><i class="fas fa-bell"></i> Notifications</button>
+                <div class="sidebar-section-label">Teaching</div>
+                <button class="sidebar-item" onclick="showLecSub('l-schedule',this)"><i class="fas fa-calendar-alt"></i> My Schedule</button>
+                <button class="sidebar-item" onclick="showModule('attendance')"><i class="fas fa-calendar-check"></i> Mark Attendance</button>
+                <button class="sidebar-item" onclick="showLecSub('l-att-reports',this)"><i class="fas fa-chart-bar"></i> Attendance Reports</button>
+                <button class="sidebar-item" onclick="showLecSub('l-upload-grades',this)"><i class="fas fa-upload"></i> Upload Grades</button>
+                <div class="sidebar-section-label">Account</div>
+                <button class="sidebar-item" onclick="showLecSub('l-profile',this)"><i class="fas fa-user-cog"></i> Profile &amp; Settings</button>
+                <button class="sidebar-item" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </nav>
+        </aside>
+
+        <main class="dashboard-main">
+            <!-- L1: Dashboard -->
+            <div id="l-dashboard" class="sub-page active">
+                <div class="page-header"><div><h2>Welcome back, Mr. Akinlolu!</h2><p id="lecturer-welcome">2024/2025 Semester 1 · Week 11</p></div></div>
+                <div class="stats-grid">
+                    <div class="stat-card"><i class="fas fa-book"></i><h3>Total Courses</h3><div class="stat-value" id="lecturer-stat-courses">4</div><p class="stat-sub">Assigned to you</p></div>
+                    <div class="stat-card"><i class="fas fa-users"></i><h3>Total Students</h3><div class="stat-value" id="lecturer-stat-students">312</div><p class="stat-sub">Across all courses</p></div>
+                    <div class="stat-card accent-green"><i class="fas fa-percentage"></i><h3>Avg. Attendance</h3><div class="stat-value">79%</div><p class="stat-sub">Campus benchmark: 76%</p></div>
+                    <div class="stat-card accent-yellow"><i class="fas fa-exclamation-triangle"></i><h3>Grades Pending</h3><div class="stat-value">2</div><p class="stat-sub">Courses awaiting submission</p></div>
+                </div>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 style="margin-bottom:16px"><i class="fas fa-calendar-day" style="color:var(--primary-color);margin-right:8px"></i>Today's Classes</h3>
+                        <div class="schedule-slot"><div class="slot-time">08:00</div><div class="slot-bar" style="background:#0f7a5a"></div><div style="flex:1"><div class="slot-title">CSC207 — Foundation of Sequential Programming</div><div class="slot-meta">Hall B · 45 students</div></div><button class="btn btn-outline btn-sm" onclick="showModule('attendance')">Mark Att.</button></div>
+                        <div class="schedule-slot"><div class="slot-time">14:00</div><div class="slot-bar" style="background:#0f7a5a"></div><div style="flex:1"><div class="slot-title">CSC203 — Web Development</div><div class="slot-meta">Lab 3 · 60 students</div></div><button class="btn btn-outline btn-sm" onclick="showModule('attendance')">Mark Att.</button></div>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-bottom:16px"><i class="fas fa-book" style="color:var(--primary-color);margin-right:8px"></i>My Courses</h3>
+                        <div style="padding:10px 0;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px"><div style="width:10px;height:10px;border-radius:50%;background:var(--primary-color)"></div><div><div style="font-weight:600">CSC207 — Foundations of Seq. Programming</div><div style="font-size:0.85rem;color:#7f8c8d">45 students · 84% avg attendance</div></div></div>
+                        <div style="padding:10px 0;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px"><div style="width:10px;height:10px;border-radius:50%;background:var(--primary-color)"></div><div><div style="font-weight:600">CSC203 — Web Development</div><div style="font-size:0.85rem;color:#7f8c8d">60 students · 79% avg attendance</div></div></div>
+                        <div style="padding:10px 0;display:flex;align-items:center;gap:10px"><div style="width:10px;height:10px;border-radius:50%;background:var(--primary-color)"></div><div><div style="font-weight:600">CSC401 — Advanced Algorithms</div><div style="font-size:0.85rem;color:#7f8c8d">54 students · 81% avg attendance</div></div></div>
+                    </div>
+                </div>
+                <div class="card mt-2">
+                    <h3 style="margin-bottom:16px"><i class="fas fa-tasks" style="color:var(--warning-color);margin-right:8px"></i>Pending Actions</h3>
+                    <div class="grid grid-2">
+                        <div style="background:#fff8e1;border:1px solid #fde68a;border-radius:8px;padding:16px"><div style="font-weight:600;margin-bottom:6px">📝 Upload Grades — CSC203</div><div style="font-size:0.9rem;color:#7f8c8d;margin-bottom:12px">Deadline: April 20, 2026. 60 students enrolled.</div><button class="btn btn-primary btn-sm" onclick="showLecSub('l-upload-grades',null)">Upload Now</button></div>
+                        <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:16px"><div style="font-weight:600;margin-bottom:6px">⚠️ At-Risk Students — CSC207</div><div style="font-size:0.9rem;color:#7f8c8d;margin-bottom:12px">3 students below 70% attendance threshold.</div><button class="btn btn-outline btn-sm" onclick="showLecSub('l-att-reports',null)">View Report</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L2: Notifications -->
+            <div id="l-notifications" class="sub-page">
+                <div class="page-header"><div><h2>Notifications</h2><p>2 unread</p></div><button class="btn btn-outline btn-sm">Mark all as read</button></div>
+                <div class="card">
+                    <div class="notif-item"><div class="notif-dot"></div><div class="notif-body"><div class="notif-title">📢 Grade Submission Deadline — April 1 <span class="notif-tag">Admin</span></div><div class="notif-desc">Grades for CSC207 and CSC203 must be submitted to the registry by April 1, 2026.</div><div class="notif-time">Today</div></div></div>
+                    <div class="notif-item"><div class="notif-dot"></div><div class="notif-body"><div class="notif-title">📋 Faculty Meeting — Wednesday 4pm <span class="notif-tag">Meeting</span></div><div class="notif-desc">All teaching staff are expected at the faculty board meeting in the Senate Chambers.</div><div class="notif-time">Today</div></div></div>
+                    <div class="notif-item"><div class="notif-dot read"></div><div class="notif-body"><div class="notif-title">📣 Exam Timetable Released <span class="notif-tag" style="background:#9b59b6">Exams</span></div><div class="notif-desc">The final examination timetable for 2024/25 Semester 1 has been published by the registry.</div><div class="notif-time">Yesterday</div></div></div>
+                    <div class="notif-item"><div class="notif-dot read"></div><div class="notif-body"><div class="notif-title">⚠️ 3 Students At-Risk in CSC207 <span class="notif-tag" style="background:var(--warning-color)">Attendance</span></div><div class="notif-desc">Students Firdaous Balogun, Khadijat Tunde, and one other are below the 70% threshold.</div><div class="notif-time">2 days ago</div></div></div>
+                </div>
+            </div>
+
+            <!-- L3: Schedule -->
+            <div id="l-schedule" class="sub-page">
+                <div class="page-header"><div><h2>My Schedule</h2><p>2024/2025 Semester 1</p></div></div>
+                <div class="card mb-2">
+                    <h3 style="margin-bottom:16px">Weekly Teaching Schedule</h3>
+                    <div class="schedule-slot"><div class="slot-time">Mon 08:00</div><div class="slot-bar" style="background:#3498db"></div><div><div class="slot-title">CSC207 — Foundation of Sequential Programming</div><div class="slot-meta">Hall B · 45 students · 8:00–9:30 AM</div></div></div>
+                    <div class="schedule-slot"><div class="slot-time">Wed 08:00</div><div class="slot-bar" style="background:#3498db"></div><div><div class="slot-title">CSC207 — Foundation of Sequential Programming</div><div class="slot-meta">Hall B · 45 students · 8:00–9:30 AM</div></div></div>
+                    <div class="schedule-slot"><div class="slot-time">Tue 14:00</div><div class="slot-bar" style="background:#9b59b6"></div><div><div class="slot-title">CSC203 — Web Development</div><div class="slot-meta">Lab 3 · 60 students · 2:00–4:00 PM</div></div></div>
+                    <div class="schedule-slot"><div class="slot-time">Thu 10:00</div><div class="slot-bar" style="background:#e67e22"></div><div><div class="slot-title">CSC401 — Advanced Algorithms</div><div class="slot-meta">Room 3A · 54 students · 10:00–11:30 AM</div></div></div>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Course</th><th>Students</th><th>Schedule</th><th>Venue</th><th>Actions</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>CSC207</strong> — Found. Seq. Programming</td><td>45</td><td>Mon/Wed 08:00–09:30</td><td>Hall B</td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm" onclick="showModule('attendance')">Attendance</button><button class="btn btn-outline btn-sm" onclick="showLecSub('l-att-reports',null)">Reports</button></div></td></tr>
+                            <tr><td><strong>CSC203</strong> — Web Development</td><td>60</td><td>Tue/Thu 14:00–16:00</td><td>Lab 3</td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm" onclick="showModule('attendance')">Attendance</button><button class="btn btn-outline btn-sm" onclick="showLecSub('l-att-reports',null)">Reports</button></div></td></tr>
+                            <tr><td><strong>CSC401</strong> — Advanced Algorithms</td><td>54</td><td>Tue/Thu 10:00–11:30</td><td>Room 3A</td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm" onclick="showModule('attendance')">Attendance</button><button class="btn btn-outline btn-sm" onclick="showLecSub('l-att-reports',null)">Reports</button></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- L4: Attendance Reports -->
+            <div id="l-att-reports" class="sub-page">
+                <div class="page-header"><div><h2>Attendance Reports</h2><p>CSC207 — Foundation of Sequential Programming · 16 classes held</p></div>
+                    <div class="flex gap-2">
+                        <select class="form-control" style="width:220px"><option>CSC207</option><option>CSC203</option><option>CSC401</option></select>
+                        <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export CSV</button>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card"><i class="fas fa-users"></i><h3>Total Students</h3><div class="stat-value">45</div></div>
+                    <div class="stat-card accent-green"><i class="fas fa-percentage"></i><h3>Avg. Rate</h3><div class="stat-value">81%</div></div>
+                    <div class="stat-card accent-red"><i class="fas fa-exclamation-circle"></i><h3>At-Risk</h3><div class="stat-value">3</div></div>
+                    <div class="stat-card accent-green"><i class="fas fa-medal"></i><h3>Perfect Att.</h3><div class="stat-value">5</div></div>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Matric No.</th><th>Student</th><th>Attended</th><th>Absent</th><th>Rate</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-mono">FUO/24/0248</td><td>Faatimah Amuda</td><td>14</td><td>2</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:70px"><div class="progress-fill green" style="width:87.5%"></div></div>87.5%</div></td><td><span class="badge badge-green">Good</span></td></tr>
+                            <tr><td class="font-mono">FUO/24/0294</td><td>Firdaous Balogun</td><td>10</td><td>6</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:70px"><div class="progress-fill red" style="width:62.5%"></div></div><span style="color:var(--accent-color)">62.5%</span></div></td><td><span class="badge badge-red">At Risk</span></td></tr>
+                            <tr><td class="font-mono">FUO/24/0315</td><td>Abdullahi Musa</td><td>15</td><td>1</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:70px"><div class="progress-fill green" style="width:93.75%"></div></div>93.8%</div></td><td><span class="badge badge-green">Good</span></td></tr>
+                            <tr><td class="font-mono">FUO/24/0388</td><td>Khadijat Tunde</td><td>9</td><td>7</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:70px"><div class="progress-fill red" style="width:56.25%"></div></div><span style="color:var(--accent-color)">56.3%</span></div></td><td><span class="badge badge-red">At Risk</span></td></tr>
+                            <tr><td class="font-mono">FUO/24/0441</td><td>Olamide Adeyemi</td><td>13</td><td>3</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:70px"><div class="progress-fill yellow" style="width:81.25%"></div></div>81.3%</div></td><td><span class="badge badge-yellow">Satisfactory</span></td></tr>
+                            <tr><td class="font-mono">FUO/24/0602</td><td>Fathia Popoola</td><td>16</td><td>0</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:70px"><div class="progress-fill green" style="width:100%"></div></div>100%</div></td><td><span class="badge badge-green">Perfect</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- L5: Upload Grades -->
+            <div id="l-upload-grades" class="sub-page">
+                <div class="page-header"><div><h2>Upload Grades</h2><p>CSC207 — Foundation of Sequential Programming · 2024/25 Semester 1</p></div>
+                    <div class="flex gap-2">
+                        <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Download Template</button>
+                        <button class="btn btn-primary btn-sm" onclick="alert('Grades submitted successfully!')"><i class="fas fa-paper-plane"></i> Submit Grades</button>
+                    </div>
+                </div>
+                <div class="card mb-2">
+                    <div class="grid grid-3">
+                        <div><div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:#7f8c8d">Course</div><div style="font-weight:600;margin-top:4px">CSC207 — Foundation of Seq. Programming</div></div>
+                        <div><div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:#7f8c8d">CA Weight</div><div style="font-weight:600;margin-top:4px">40 marks</div></div>
+                        <div><div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:#7f8c8d">Exam Weight</div><div style="font-weight:600;margin-top:4px">60 marks</div></div>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Matric No.</th><th>Student</th><th>CA /40</th><th>Exam /60</th><th>Total /100</th><th>Grade</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-mono">FUO/24/0248</td><td>Faatimah Amuda</td><td><input class="grade-input" type="number" min="0" max="40" value="32" id="g-ca-0" oninput="calcGrade(0)"></td><td><input class="grade-input" type="number" min="0" max="60" value="52" id="g-ex-0" oninput="calcGrade(0)"></td><td><span id="g-tot-0" class="font-mono" style="font-weight:600">84</span></td><td><span id="g-gr-0" class="badge badge-green">A</span></td></tr>
+                            <tr><td class="font-mono">FUO/24/0294</td><td>Firdaous Balogun</td><td><input class="grade-input" type="number" min="0" max="40" value="22" id="g-ca-1" oninput="calcGrade(1)"></td><td><input class="grade-input" type="number" min="0" max="60" value="40" id="g-ex-1" oninput="calcGrade(1)"></td><td><span id="g-tot-1" class="font-mono" style="font-weight:600">62</span></td><td><span id="g-gr-1" class="badge badge-yellow">C</span></td></tr>
+                            <tr><td class="font-mono">FUO/24/0315</td><td>Abdullahi Musa</td><td><input class="grade-input" type="number" min="0" max="40" value="38" id="g-ca-2" oninput="calcGrade(2)"></td><td><input class="grade-input" type="number" min="0" max="60" value="54" id="g-ex-2" oninput="calcGrade(2)"></td><td><span id="g-tot-2" class="font-mono" style="font-weight:600">92</span></td><td><span id="g-gr-2" class="badge badge-green">A</span></td></tr>
+                            <tr><td class="font-mono">FUO/24/0388</td><td>Khadijat Tunde</td><td><input class="grade-input" type="number" min="0" max="40" value="19" id="g-ca-3" oninput="calcGrade(3)"></td><td><input class="grade-input" type="number" min="0" max="60" value="35" id="g-ex-3" oninput="calcGrade(3)"></td><td><span id="g-tot-3" class="font-mono" style="font-weight:600">54</span></td><td><span id="g-gr-3" class="badge badge-yellow">C</span></td></tr>
+                            <tr><td class="font-mono">FUO/24/0602</td><td>Fathia Popoola</td><td><input class="grade-input" type="number" min="0" max="40" value="36" id="g-ca-4" oninput="calcGrade(4)"></td><td><input class="grade-input" type="number" min="0" max="60" value="56" id="g-ex-4" oninput="calcGrade(4)"></td><td><span id="g-tot-4" class="font-mono" style="font-weight:600">92</span></td><td><span id="g-gr-4" class="badge badge-green">A</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="flex gap-2 mt-2">
+                    <button class="btn btn-primary" onclick="alert('Grades submitted successfully!')"><i class="fas fa-paper-plane"></i> Submit Grades</button>
+                    <button class="btn btn-secondary"><i class="fas fa-save"></i> Save Draft</button>
+                </div>
+            </div>
+
+            <!-- L6: Profile -->
+            <div id="l-profile" class="sub-page">
+                <div class="page-header"><div><h2>Profile &amp; Settings</h2></div><button class="btn btn-primary btn-sm"><i class="fas fa-save"></i> Save Changes</button></div>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 style="margin-bottom:20px">Personal Information</h3>
+                        <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+                            <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#0f7a5a,#1D9E75);display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;color:white;flex-shrink:0">AK</div>
+                            <div><h4>Mr. Akinlolu</h4><p style="color:#7f8c8d;font-size:0.9rem">STF-0041 · Department of Computer Science</p></div>
+                        </div>
+                        <div class="form-group"><label>Full Name</label><input class="form-control" value="Mr. Akinlolu"></div>
+                        <div class="form-group"><label>Staff ID</label><input class="form-control" value="STF-0041" readonly style="background:#f5f5f5"></div>
+                        <div class="form-group"><label>Email</label><input class="form-control" type="email" value="akinlolu@fuo.edu.ng"></div>
+                        <div class="form-group"><label>Phone</label><input class="form-control" placeholder="+234 ..."></div>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-bottom:16px">Notification Preferences</h3>
+                        <div class="toggle-row"><div class="toggle-label"><h5>Email Notifications</h5><p>Receive updates via email</p></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                        <div class="toggle-row"><div class="toggle-label"><h5>At-Risk Student Alerts</h5><p>Alert when students drop below 70%</p></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                        <div class="toggle-row"><div class="toggle-label"><h5>Grade Deadline Reminders</h5><p>Remind 3 days before deadline</p></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ADMIN DASHBOARD
+══════════════════════════════════════════════════════════════ -->
+<div id="admin" class="module">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-avatar" style="background:linear-gradient(135deg,#b45309,#d97706)">AD</div>
+                <div class="sidebar-username">Admin</div>
+                <div class="sidebar-subrole">Registry · Administration</div>
+            </div>
+            <nav class="admin-nav">
+                <div class="sidebar-section-label">Overview</div>
+                <button class="admin-nav-btn active" onclick="showAdminSub('a-dashboard',this)"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</button>
+                <button class="admin-nav-btn" onclick="showAdminSub('a-analytics',this)"><i class="fas fa-chart-bar"></i> Reports &amp; Analytics</button>
+                <div class="sidebar-section-label">People</div>
+                <button class="admin-nav-btn" onclick="showAdminSub('a-students',this)"><i class="fas fa-user-graduate"></i> Manage Students</button>
+                <button class="admin-nav-btn" onclick="showAdminSub('a-lecturers',this)"><i class="fas fa-chalkboard-teacher"></i> Manage Lecturers</button>
+                <div class="sidebar-section-label">Academics</div>
+                <button class="admin-nav-btn" onclick="showAdminSub('a-courses',this)"><i class="fas fa-book"></i> Course Management</button>
+                <button class="admin-nav-btn" onclick="showAdminSub('a-timetable',this)"><i class="fas fa-calendar-alt"></i> Timetable Mgmt.</button>
+                <button class="admin-nav-btn" onclick="showAdminSub('a-att-overview',this)"><i class="fas fa-calendar-check"></i> Attendance Overview</button>
+                <button class="admin-nav-btn" onclick="showAdminSub('a-grades-mgmt',this)"><i class="fas fa-star"></i> Grades Management</button>
+                <div class="sidebar-section-label">System</div>
+                <button class="admin-nav-btn" onclick="showAdminSub('a-broadcast',this)"><i class="fas fa-bullhorn"></i> Broadcast Notif.</button>
+                <button class="admin-nav-btn" onclick="showAdminSub('a-settings',this)"><i class="fas fa-cog"></i> System Settings</button>
+                <button class="admin-nav-btn" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+
+            <!-- A1: Admin Dashboard -->
+            <div id="a-dashboard" class="sub-page active">
+                <div class="page-header"><div><h2>Admin Dashboard</h2><p>2024/2025 Semester 1 · System Overview</p></div></div>
+                <div class="stats-grid">
+                    <div class="stat-card"><i class="fas fa-users"></i><h3>Total Students</h3><div class="stat-value" id="admin-stat-students">4,820</div><div id="admin-stat-users-sub" class="stat-sub">Registered this semester</div></div>
+                    <div class="stat-card"><i class="fas fa-chalkboard-teacher"></i><h3>Lecturers</h3><div class="stat-value" id="admin-stat-lecturers">148</div><p class="stat-sub">Active teaching staff</p></div>
+                    <div class="stat-card accent-green"><i class="fas fa-book"></i><h3>Active Courses</h3><div class="stat-value" id="admin-stat-courses">62</div><p class="stat-sub">Running this semester</p></div>
+                    <div class="stat-card accent-red"><i class="fas fa-exclamation-circle"></i><h3>At-Risk Students</h3><div class="stat-value" id="admin-stat-users">87</div><p class="stat-sub">Below 70% attendance</p></div>
+                </div>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 style="margin-bottom:16px"><i class="fas fa-heartbeat" style="color:var(--success-color);margin-right:8px"></i>System Health</h3>
+                        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee;font-size:0.95rem"><span style="color:#7f8c8d">Campus-wide Avg. Attendance</span><span class="badge badge-green">81%</span></div>
+                        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee;font-size:0.95rem"><span style="color:#7f8c8d">Grades Submitted</span><span class="badge badge-green">94%</span></div>
+                        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee;font-size:0.95rem"><span style="color:#7f8c8d">Pending Grade Approvals</span><span class="badge badge-yellow">6 courses</span></div>
+                        <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:0.95rem"><span style="color:#7f8c8d">Registration Completion</span><span class="badge badge-green">98%</span></div>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-bottom:16px"><i class="fas fa-bolt" style="color:var(--warning-color);margin-right:8px"></i>Quick Actions</h3>
+                        <div style="display:flex;flex-direction:column;gap:10px">
+                            <button class="btn btn-outline w-full" style="justify-content:flex-start" onclick="showAdminSub('a-students',null)"><i class="fas fa-user-graduate"></i> Manage Students</button>
+                            <button class="btn btn-outline w-full" style="justify-content:flex-start" onclick="showAdminSub('a-courses',null)"><i class="fas fa-plus-circle"></i> Add New Course</button>
+                            <button class="btn btn-outline w-full" style="justify-content:flex-start" onclick="adminAddCourse()"><i class="fas fa-user-plus"></i> Enroll Student</button>
+                            <button class="btn btn-primary w-full" style="justify-content:flex-start" onclick="showAdminSub('a-broadcast',null)"><i class="fas fa-bullhorn"></i> Send Broadcast</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-2">
+                    <h3 style="margin-bottom:16px"><i class="fas fa-university" style="color:var(--primary-color);margin-right:8px"></i>Department Summary</h3>
+                    <div class="table-wrap" style="box-shadow:none;border-radius:0">
+                        <table class="data-table">
+                            <thead><tr><th>Department</th><th>Students</th><th>Lecturers</th><th>Courses</th><th>Avg Attendance</th><th>At Risk</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Computer Science</strong></td><td>620</td><td>22</td><td>14</td><td><span class="badge badge-green">83%</span></td><td><span class="badge badge-red">12</span></td></tr>
+                                <tr><td><strong>Mathematics</strong></td><td>540</td><td>18</td><td>12</td><td><span class="badge badge-yellow">79%</span></td><td><span class="badge badge-red">18</span></td></tr>
+                                <tr><td><strong>Physics</strong></td><td>380</td><td>15</td><td>10</td><td><span class="badge badge-yellow">77%</span></td><td><span class="badge badge-red">15</span></td></tr>
+                                <tr><td><strong>Engineering</strong></td><td>890</td><td>28</td><td>18</td><td><span class="badge badge-green">82%</span></td><td><span class="badge badge-red">20</span></td></tr>
+                                <tr><td><strong>Economics</strong></td><td>460</td><td>16</td><td>8</td><td><span class="badge badge-green">80%</span></td><td><span class="badge badge-yellow">10</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- A2: Analytics -->
+            <div id="a-analytics" class="sub-page">
+                <div class="page-header"><div><h2>Reports &amp; Analytics</h2><p>2024/2025 Semester 1</p></div><button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export Report</button></div>
+                <div class="stats-grid">
+                    <div class="stat-card accent-green"><i class="fas fa-chart-line"></i><h3>Campus Attendance</h3><div class="stat-value">81%</div><p class="stat-sub">+5% from last semester</p></div>
+                    <div class="stat-card"><i class="fas fa-graduation-cap"></i><h3>Avg. GPA</h3><div class="stat-value">3.41</div><p class="stat-sub">Semester average</p></div>
+                    <div class="stat-card accent-green"><i class="fas fa-check-double"></i><h3>Pass Rate</h3><div class="stat-value">95.2%</div><p class="stat-sub">All courses</p></div>
+                    <div class="stat-card accent-red"><i class="fas fa-user-times"></i><h3>Dropout Rate</h3><div class="stat-value">1.2%</div><p class="stat-sub">Lowest in 3 years</p></div>
+                </div>
+                <div class="grid grid-2 mt-2">
+                    <div class="card">
+                        <h3 style="margin-bottom:16px">Attendance Trend (This Semester)</h3>
+                        <div class="bar-chart">
+                            <div class="bar-col"><div class="bar-fill" style="height:72px"></div><div class="bar-lbl">Sep</div></div>
+                            <div class="bar-col"><div class="bar-fill" style="height:76px"></div><div class="bar-lbl">Oct</div></div>
+                            <div class="bar-col"><div class="bar-fill" style="height:74px"></div><div class="bar-lbl">Nov</div></div>
+                            <div class="bar-col"><div class="bar-fill" style="height:78px"></div><div class="bar-lbl">Dec</div></div>
+                            <div class="bar-col"><div class="bar-fill" style="height:80px"></div><div class="bar-lbl">Jan</div></div>
+                            <div class="bar-col"><div class="bar-fill" style="height:82px"></div><div class="bar-lbl">Feb</div></div>
+                            <div class="bar-col"><div class="bar-fill" style="height:81px"></div><div class="bar-lbl">Mar</div></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-bottom:16px">Grade Distribution</h3>
+                        <div class="bar-chart">
+                            <div class="bar-col"><div class="bar-fill" style="height:20px;background:var(--success-color)"></div><div class="bar-lbl">A (10%)</div></div>
+                            <div class="bar-col"><div class="bar-fill" style="height:50px;background:var(--primary-color)"></div><div class="bar-lbl">B (25%)</div></div>
+                            <div class="bar-col"><div class="bar-fill" style="height:80px;background:var(--warning-color)"></div><div class="bar-lbl">C (40%)</div></div>
+                            <div class="bar-col"><div class="bar-fill" style="height:60px;background:var(--accent-color)"></div><div class="bar-lbl">D (20%)</div></div>
+                            <div class="bar-col"><div class="bar-fill" style="height:10px;background:#bdc3c7"></div><div class="bar-lbl">F (5%)</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-wrap mt-2">
+                    <table class="data-table">
+                        <thead><tr><th>Department</th><th>Avg GPA</th><th>Avg Attendance</th><th>At-Risk</th><th>Pass Rate</th><th>Trend</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Computer Science</strong></td><td class="font-mono">3.52</td><td><span class="badge badge-green">83%</span></td><td><span class="badge badge-red">12</span></td><td><span class="badge badge-green">97%</span></td><td style="font-size:1.2rem;color:var(--success-color)">↑</td></tr>
+                            <tr><td><strong>Mathematics</strong></td><td class="font-mono">3.40</td><td><span class="badge badge-yellow">79%</span></td><td><span class="badge badge-red">18</span></td><td><span class="badge badge-green">95%</span></td><td style="font-size:1.2rem;color:#7f8c8d">→</td></tr>
+                            <tr><td><strong>Physics</strong></td><td class="font-mono">3.31</td><td><span class="badge badge-yellow">77%</span></td><td><span class="badge badge-red">15</span></td><td><span class="badge badge-green">93%</span></td><td style="font-size:1.2rem;color:var(--success-color)">↑</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- A3: Manage Students -->
+            <div id="a-students" class="sub-page">
+                <div class="page-header"><div><h2>Manage Students</h2><p>4,820 students registered</p></div>
+                    <div class="flex gap-2">
+                        <input class="form-control" placeholder="Search students…" style="width:220px">
+                        <button class="btn btn-outline btn-sm"><i class="fas fa-file-import"></i> Import CSV</button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add Student</button>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Matric No.</th><th>Full Name</th><th>Department</th><th>Level</th><th>Email</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-mono">FUO/24/0248</td><td><strong>Faatimah Amuda</strong></td><td>Computer Science</td><td><span class="badge badge-gray">200L</span></td><td style="font-size:0.85rem">famuda@fuo.edu.ng</td><td><span class="badge badge-green">Active</span></td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-outline btn-sm" style="color:var(--accent-color)"><i class="fas fa-trash"></i></button></div></td></tr>
+                            <tr><td class="font-mono">FUO/24/0294</td><td><strong>Firdaous Balogun</strong></td><td>Computer Science</td><td><span class="badge badge-gray">200L</span></td><td style="font-size:0.85rem">fbalogun@fuo.edu.ng</td><td><span class="badge badge-green">Active</span></td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-outline btn-sm" style="color:var(--accent-color)"><i class="fas fa-trash"></i></button></div></td></tr>
+                            <tr><td class="font-mono">FUO/24/0315</td><td><strong>Abdullahi Musa</strong></td><td>Computer Science</td><td><span class="badge badge-gray">200L</span></td><td style="font-size:0.85rem">amusa@fuo.edu.ng</td><td><span class="badge badge-green">Active</span></td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-outline btn-sm" style="color:var(--accent-color)"><i class="fas fa-trash"></i></button></div></td></tr>
+                            <tr><td class="font-mono">FUO/23/0188</td><td><strong>Khadijat Tunde</strong></td><td>Mathematics</td><td><span class="badge badge-gray">300L</span></td><td style="font-size:0.85rem">ktunde@fuo.edu.ng</td><td><span class="badge badge-red">At Risk</span></td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-outline btn-sm" style="color:var(--accent-color)"><i class="fas fa-trash"></i></button></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card mt-2">
+                    <h3 style="margin-bottom:16px">Add New Student</h3>
+                    <div class="grid grid-3">
+                        <div class="form-group"><label>Full Name</label><input class="form-control" placeholder="Student full name"></div>
+                        <div class="form-group"><label>Matric Number</label><input class="form-control" placeholder="FUO/24/XXXX" id="admin-enroll-matric"></div>
+                        <div class="form-group"><label>Department</label><input class="form-control" placeholder="e.g. Computer Science"></div>
+                        <div class="form-group"><label>Level</label><select class="form-control"><option>100L</option><option>200L</option><option>300L</option><option>400L</option></select></div>
+                        <div class="form-group"><label>Email</label><input class="form-control" type="email" placeholder="student@fuo.edu.ng"></div>
+                        <div class="form-group"><label>Course to Enroll</label><input class="form-control" placeholder="e.g. CSC207" id="admin-enroll-course"></div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="btn btn-primary" onclick="adminEnrollStudent()"><i class="fas fa-user-plus"></i> Add &amp; Enroll</button>
+                        <button class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- A4: Manage Lecturers -->
+            <div id="a-lecturers" class="sub-page">
+                <div class="page-header"><div><h2>Manage Lecturers</h2><p>148 active teaching staff</p></div>
+                    <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add Lecturer</button>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Staff ID</th><th>Name</th><th>Department</th><th>Courses</th><th>Students</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-mono">STF-0041</td><td><strong>Mr. Akinlolu</strong></td><td>Computer Science</td><td>3</td><td>159</td><td><span class="badge badge-green">Active</span></td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-outline btn-sm" style="color:var(--accent-color)"><i class="fas fa-trash"></i></button></div></td></tr>
+                            <tr><td class="font-mono">STF-0029</td><td><strong>Dr. Ibrahim J.A.</strong></td><td>Mathematics</td><td>2</td><td>120</td><td><span class="badge badge-green">Active</span></td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-outline btn-sm" style="color:var(--accent-color)"><i class="fas fa-trash"></i></button></div></td></tr>
+                            <tr><td class="font-mono">STF-0018</td><td><strong>Dr. Ogirima</strong></td><td>Computer Science</td><td>2</td><td>95</td><td><span class="badge badge-green">Active</span></td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button><button class="btn btn-outline btn-sm" style="color:var(--accent-color)"><i class="fas fa-trash"></i></button></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- A5: Course Management -->
+            <div id="a-courses" class="sub-page">
+                <div class="page-header"><div><h2>Course Management</h2><p>62 active courses this semester</p></div>
+                    <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> New Course</button>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Code</th><th>Course Name</th><th>Dept.</th><th>Units</th><th>Lecturer</th><th>Students</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-mono text-primary">CSC207</td><td>Foundation of Sequential Programming</td><td>Comp. Sci.</td><td>3</td><td>Mr. Akinlolu</td><td>45</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button></td></tr>
+                            <tr><td class="font-mono text-primary">MTH203</td><td>Mathematics</td><td>Mathematics</td><td>3</td><td>Dr. Ibrahim J.A.</td><td>120</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button></td></tr>
+                            <tr><td class="font-mono text-primary">CSC203</td><td>Web Development</td><td>Comp. Sci.</td><td>3</td><td>Dr. Ogirima</td><td>60</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card mt-2">
+                    <h3 style="margin-bottom:16px">Add New Course</h3>
+                    <div class="grid grid-3">
+                        <div class="form-group"><label>Course Code</label><input class="form-control" placeholder="e.g. CSC207" id="admin-course-code"></div>
+                        <div class="form-group"><label>Course Title</label><input class="form-control" placeholder="Full course title" id="admin-course-title"></div>
+                        <div class="form-group"><label>Staff ID</label><input class="form-control" placeholder="e.g. STF-0041" id="admin-staff-id"></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="adminAddCourse()"><i class="fas fa-plus"></i> Add Course</button>
+                </div>
+            </div>
+
+            <!-- A6: Timetable -->
+            <div id="a-timetable" class="sub-page">
+                <div class="page-header"><div><h2>Timetable Management</h2><p>2024/2025 Semester 1</p></div>
+                    <div class="flex gap-2"><select class="form-control" style="width:200px"><option>2024/25 Semester 1</option><option>2024/25 Semester 2</option></select><button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add Slot</button></div>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Course</th><th>Lecturer</th><th>Day(s)</th><th>Time</th><th>Venue</th><th>Students</th><th>Actions</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-mono text-primary">CSC207</td><td>Mr. Akinlolu</td><td>Mon / Wed</td><td>08:00–09:30</td><td>Hall B</td><td>45</td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i> Edit</button><button class="btn btn-outline btn-sm" style="color:var(--accent-color)"><i class="fas fa-trash"></i></button></div></td></tr>
+                            <tr><td class="font-mono text-primary">MTH203</td><td>Dr. Ibrahim J.A.</td><td>Tue / Thu</td><td>11:00–12:30</td><td>LT 1</td><td>120</td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i> Edit</button><button class="btn btn-outline btn-sm" style="color:var(--accent-color)"><i class="fas fa-trash"></i></button></div></td></tr>
+                            <tr><td class="font-mono text-primary">CSC203</td><td>Dr. Ogirima</td><td>Tue / Thu</td><td>14:00–16:00</td><td>Lab 3</td><td>60</td><td><div class="flex gap-2"><button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i> Edit</button><button class="btn btn-outline btn-sm" style="color:var(--accent-color)"><i class="fas fa-trash"></i></button></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- A7: Attendance Overview -->
+            <div id="a-att-overview" class="sub-page">
+                <div class="page-header"><div><h2>Attendance Overview</h2><p>Campus-wide summary</p></div><button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export Report</button></div>
+                <div class="stats-grid">
+                    <div class="stat-card accent-green"><i class="fas fa-percentage"></i><h3>Campus Average</h3><div class="stat-value">81%</div><p class="stat-sub">Target: 75%</p></div>
+                    <div class="stat-card accent-red"><i class="fas fa-user-times"></i><h3>At-Risk Students</h3><div class="stat-value">87</div><p class="stat-sub">Below 70%</p></div>
+                    <div class="stat-card accent-green"><i class="fas fa-medal"></i><h3>Perfect Attendance</h3><div class="stat-value">214</div><p class="stat-sub">100% rate</p></div>
+                    <div class="stat-card accent-red"><i class="fas fa-ban"></i><h3>Chronic Absentees</h3><div class="stat-value">23</div><p class="stat-sub">Flagged for review</p></div>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Department</th><th>Students</th><th>Avg. Rate</th><th>At Risk</th><th>Perfect</th><th></th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Computer Science</strong></td><td>620</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:80px"><div class="progress-fill green" style="width:83%"></div></div>83%</div></td><td><span class="badge badge-red">12</span></td><td><span class="badge badge-green">45</span></td><td><button class="btn btn-ghost btn-sm" style="color:var(--primary-color)">Details</button></td></tr>
+                            <tr><td><strong>Mathematics</strong></td><td>540</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:80px"><div class="progress-fill yellow" style="width:79%"></div></div>79%</div></td><td><span class="badge badge-red">18</span></td><td><span class="badge badge-green">30</span></td><td><button class="btn btn-ghost btn-sm" style="color:var(--primary-color)">Details</button></td></tr>
+                            <tr><td><strong>Engineering</strong></td><td>890</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="width:80px"><div class="progress-fill green" style="width:82%"></div></div>82%</div></td><td><span class="badge badge-red">20</span></td><td><span class="badge badge-green">60</span></td><td><button class="btn btn-ghost btn-sm" style="color:var(--primary-color)">Details</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- A8: Grades Management -->
+            <div id="a-grades-mgmt" class="sub-page">
+                <div class="page-header"><div><h2>Grades Management</h2><p>Review and approve submitted grades</p></div><button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export All</button></div>
+                <div class="stats-grid">
+                    <div class="stat-card"><i class="fas fa-book"></i><h3>Total Courses</h3><div class="stat-value">62</div></div>
+                    <div class="stat-card accent-yellow"><i class="fas fa-upload"></i><h3>Submitted</h3><div class="stat-value">47</div><p class="stat-sub">76% completion</p></div>
+                    <div class="stat-card accent-green"><i class="fas fa-check-circle"></i><h3>Approved</h3><div class="stat-value">41</div></div>
+                    <div class="stat-card accent-yellow"><i class="fas fa-clock"></i><h3>Pending Approval</h3><div class="stat-value">6</div></div>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead><tr><th>Code</th><th>Course</th><th>Lecturer</th><th>Students</th><th>Submitted</th><th>Status</th><th>Action</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-mono text-primary">CSC207</td><td>Found. Seq. Programming</td><td>Mr. Akinlolu</td><td>45</td><td><span class="badge badge-green">Yes</span></td><td><span class="badge badge-yellow">Pending</span></td><td><button class="btn btn-primary btn-sm" onclick="this.textContent='Approved ✓';this.disabled=true">Approve</button></td></tr>
+                            <tr><td class="font-mono text-primary">MTH203</td><td>Mathematics</td><td>Dr. Ibrahim</td><td>120</td><td><span class="badge badge-red">No</span></td><td><span class="badge badge-gray">—</span></td><td><button class="btn btn-outline btn-sm" disabled>Awaiting submission</button></td></tr>
+                            <tr><td class="font-mono text-primary">CSC203</td><td>Web Development</td><td>Dr. Ogirima</td><td>60</td><td><span class="badge badge-green">Yes</span></td><td><span class="badge badge-green">Approved</span></td><td><span style="color:#7f8c8d;font-size:0.85rem">Approved ✓</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- A9: Broadcast -->
+            <div id="a-broadcast" class="sub-page">
+                <div class="page-header"><div><h2>Broadcast Notification</h2><p>Send announcements to all users</p></div></div>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 style="margin-bottom:20px">Compose Broadcast</h3>
+                        <div class="form-group"><label>Recipients</label>
+                            <div style="display:flex;flex-direction:column;gap:8px;padding:12px;background:var(--light-color);border-radius:8px">
+                                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="rec-all" checked> All users (students + lecturers + admin)</label>
+                                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox"> Students only</label>
+                                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox"> Lecturers / Staff only</label>
+                                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox"> Specific department</label>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>Priority</label><select class="form-control"><option>Normal</option><option>Important</option><option>Urgent</option></select></div>
+                        <div class="form-group"><label>Subject</label><input class="form-control" type="text" placeholder="Notification subject"></div>
+                        <div class="form-group"><label>Message</label><textarea class="form-control" rows="5" placeholder="Type your announcement here…"></textarea></div>
+                        <div class="flex gap-2">
+                            <button class="btn btn-primary" onclick="alert('Broadcast sent successfully to all recipients!')"><i class="fas fa-paper-plane"></i> Send Broadcast</button>
+                            <button class="btn btn-secondary"><i class="fas fa-clock"></i> Schedule</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card mb-2">
+                            <h3 style="margin-bottom:14px">Estimated Reach</h3>
+                            <div style="padding:10px 0;border-bottom:1px solid #eee;display:flex;justify-content:space-between;font-size:0.95rem"><span style="color:#7f8c8d">All Students</span><span class="badge badge-blue">4,820</span></div>
+                            <div style="padding:10px 0;border-bottom:1px solid #eee;display:flex;justify-content:space-between;font-size:0.95rem"><span style="color:#7f8c8d">All Lecturers</span><span class="badge badge-green">148</span></div>
+                            <div style="padding:10px 0;font-size:0.95rem;display:flex;justify-content:space-between"><span style="color:#7f8c8d">Admin Staff</span><span class="badge badge-yellow">12</span></div>
+                            <div style="padding-top:10px;border-top:1px solid #eee;font-weight:700">Total: 4,980 recipients</div>
+                        </div>
+                        <div class="card">
+                            <h3 style="margin-bottom:14px">Recent Broadcasts</h3>
+                            <div class="notif-item"><div class="notif-dot read"></div><div class="notif-body"><div class="notif-title">Campus Closure — Public Holiday</div><div class="notif-desc">Sent to all users</div><div class="notif-time">3 days ago</div></div></div>
+                            <div class="notif-item"><div class="notif-dot read"></div><div class="notif-body"><div class="notif-title">Exam Timetable Released</div><div class="notif-desc">Sent to students</div><div class="notif-time">Last week</div></div></div>
+                            <div class="notif-item"><div class="notif-dot read"></div><div class="notif-body"><div class="notif-title">Registration Deadline Reminder</div><div class="notif-desc">Sent to students</div><div class="notif-time">2 weeks ago</div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- A10: System Settings -->
+            <div id="a-settings" class="sub-page">
+                <div class="page-header"><div><h2>System Settings</h2><p>Manage academic year and system configuration</p></div></div>
+                <div class="grid grid-2">
+                    <div class="card mb-2">
+                        <h3 style="margin-bottom:16px">Academic Calendar</h3>
+                        <div class="report-row"><span class="report-key">Academic Year</span><span class="report-val">2024 / 2025</span></div>
+                        <div class="report-row"><span class="report-key">Current Semester</span><span class="report-val">Semester 1</span></div>
+                        <div class="report-row"><span class="report-key">Semester Start</span><span class="report-val">September 2, 2024</span></div>
+                        <div class="report-row"><span class="report-key">Semester End</span><span class="report-val">April 30, 2025</span></div>
+                        <div class="report-row"><span class="report-key">Exam Period</span><span class="report-val">April 1–30, 2025</span></div>
+                    </div>
+                    <div class="card mb-2">
+                        <h3 style="margin-bottom:16px">Grading Configuration</h3>
+                        <div class="report-row"><span class="report-key">CA Weight</span><span class="report-val">40%</span></div>
+                        <div class="report-row"><span class="report-key">Exam Weight</span><span class="report-val">60%</span></div>
+                        <div class="report-row"><span class="report-key">Minimum Pass Score</span><span class="report-val">45 / 100</span></div>
+                        <div class="report-row"><span class="report-key">Grade Scale</span><span class="report-val">A=70+, B=60–69, C=50–59</span></div>
+                    </div>
+                </div>
+                <div class="card mb-2">
+                    <h3 style="margin-bottom:16px">System Toggles</h3>
+                    <div class="toggle-row"><div class="toggle-label"><h5>Allow Grade Edits</h5><p>Lecturers can modify submitted grades</p></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                    <div class="toggle-row"><div class="toggle-label"><h5>Email Notifications</h5><p>Send email alerts for new announcements</p></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                    <div class="toggle-row"><div class="toggle-label"><h5>Student Grade View</h5><p>Students can view their results portal</p></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                    <div class="toggle-row"><div class="toggle-label"><h5>Attendance Alerts</h5><p>Auto-notify at-risk students via email</p></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                    <div class="toggle-row"><div class="toggle-label"><h5>Registration Portal</h5><p>Open for new semester registration</p></div><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+                    <div class="toggle-row"><div class="toggle-label"><h5>Maintenance Mode</h5><p>Take system offline for maintenance</p></div><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+                </div>
+                <button class="btn btn-primary"><i class="fas fa-save"></i> Save Settings</button>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+</main><!-- end .content-area -->
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3><i class="fas fa-graduation-cap"></i> Smart Campus</h3>
+            <p style="color:#bdc3c7;margin-bottom:20px">A comprehensive campus management system for modern educational institutions.</p>
+            <div class="social-links">
+                <button class="social-btn" onclick="openSocialMedia('facebook')"><i class="fab fa-facebook-f"></i></button>
+                <button class="social-btn" onclick="openSocialMedia('twitter')"><i class="fab fa-x-twitter"></i></button>
+                <button class="social-btn" onclick="openSocialMedia('instagram')"><i class="fab fa-instagram"></i></button>
+                <button class="social-btn" onclick="openSocialMedia('linkedin')"><i class="fab fa-linkedin-in"></i></button>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><i class="fas fa-chevron-right" style="color:var(--primary-color);font-size:0.8rem"></i><a href="#" onclick="showModule('home')">Home</a></li>
+                <li><i class="fas fa-chevron-right" style="color:var(--primary-color);font-size:0.8rem"></i><a href="#" onclick="showModule('student-dashboard')">Student Portal</a></li>
+                <li><i class="fas fa-chevron-right" style="color:var(--primary-color);font-size:0.8rem"></i><a href="#" onclick="showModule('instructor-dashboard')">Lecturer Portal</a></li>
+                <li><i class="fas fa-chevron-right" style="color:var(--primary-color);font-size:0.8rem"></i><a href="#" onclick="showModule('admin')">Admin Panel</a></li>
+                <li><i class="fas fa-chevron-right" style="color:var(--primary-color);font-size:0.8rem"></i><a href="#" onclick="showModule('learn-more')">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Contact</h3>
+            <ul class="footer-links">
+                <li><i class="fas fa-map-marker-alt" style="color:var(--primary-color)"></i><span style="color:#bdc3c7">Federal University Oye-Ekiti, Nigeria</span></li>
+                <li><i class="fas fa-phone" style="color:var(--primary-color)"></i><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+                <li><i class="fas fa-envelope" style="color:var(--primary-color)"></i><a href="mailto:support@fuo.edu.ng">support@fuo.edu.ng</a></li>
+                <li><i class="fas fa-clock" style="color:var(--primary-color)"></i><span style="color:#bdc3c7">Mon–Fri, 8AM–5PM</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2026 Smart Campus System — Federal University Oye-Ekiti. All rights reserved.</p>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+</body>
+</html>
